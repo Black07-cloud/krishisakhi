@@ -1,0 +1,750 @@
+/* ============================================================
+   Soil Health Module Styles — Farmio
+   ============================================================ */
+
+.soil-page {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Page Header ── */
+.soil-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.soil-header-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.soil-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.soil-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.btn-add-soil {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-add-soil:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(22, 163, 74, 0.3);
+}
+
+/* ── Farm Selector Bar ── */
+.soil-farm-selector-bar {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: var(--card-shadow);
+}
+
+.farm-select-label-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.farm-select-label-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.soil-farm-select {
+  padding: 8px 32px 8px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%64748b' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") no-repeat right 12px center;
+  appearance: none;
+  min-width: 220px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.soil-farm-select:focus {
+  border-color: var(--color-primary);
+}
+
+.farm-meta-info-badge {
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: #f8fafc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+/* ── Latest Soil Report Wrapper ── */
+.soil-latest-report-wrapper {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.latest-report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.report-title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.report-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #dcfce7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.report-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.report-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta-badge-source, .meta-badge-type {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Primary Soil Metrics Grid */
+.soil-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.soil-metric-card {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.soil-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.metric-ph { border-left: 4px solid #16a34a; }
+.metric-n { border-left: 4px solid #2563eb; }
+.metric-p { border-left: 4px solid #d97706; }
+.metric-k { border-left: 4px solid #9333ea; }
+.metric-oc { border-left: 4px solid #0891b2; }
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.metric-icon {
+  color: var(--text-muted);
+}
+
+.metric-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.metric-sublabel {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Deficiency Alert Banner */
+.soil-intelligence-alert {
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: var(--border-radius-sm);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #873800;
+}
+
+.alert-icon-wrap { flex-shrink: 0; }
+
+/* Empty Report Card */
+.soil-empty-report-card {
+  background: var(--card-bg);
+  border: 1px dashed var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 40px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.empty-report-icon { font-size: 42px; line-height: 1; }
+.empty-report-title { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+.empty-report-desc { font-size: 14px; color: var(--text-secondary); max-width: 440px; }
+
+/* ── Soil History Table ── */
+.soil-history-container {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.history-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.history-table-wrapper {
+  overflow-x: auto;
+}
+
+.soil-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.soil-table th {
+  background: #f8fafc;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.soil-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.soil-table tr:last-child td {
+  border-bottom: none;
+}
+
+.soil-table .font-semibold { font-weight: 600; }
+.soil-table .text-right { text-align: right; }
+
+.table-badge.ph-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #dcfce7;
+  color: #15803d;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.source-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.action-buttons-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.btn-icon {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 5px;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-icon.action-view:hover { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; }
+.btn-icon.action-edit:hover { background: #f0fdf4; color: #16a34a; border-color: #bbf7d0; }
+.btn-icon.action-delete:hover { background: #fef2f2; color: #dc2626; border-color: #fecaca; }
+
+/* Mobile History Cards */
+.history-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.soil-history-mobile-card {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-card-date {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mobile-card-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.mobile-metric {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.mobile-metric .m-label { color: var(--text-muted); font-size: 10px; font-weight: 600; }
+.mobile-metric .m-val { color: var(--text-primary); font-weight: 700; }
+
+.mobile-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ── Soil Trend Component ── */
+.soil-trend-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.soil-trend-card.empty-trend {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: #f8fafc;
+}
+
+.trend-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trend-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trend-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.trend-badge-count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.trend-chart-legend {
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.leg-n { color: #2563eb; }
+.leg-p { color: #d97706; }
+.leg-k { color: #9333ea; }
+.leg-ph { color: #16a34a; }
+
+.trend-timeline-grid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 160px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.trend-time-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 6px;
+  flex: 1;
+}
+
+.trend-bars-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 120px;
+}
+
+.bar-wrapper {
+  width: 12px;
+  height: 100%;
+  background: #f1f5f9;
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.bar-fill {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.bar-n { background: #2563eb; }
+.bar-p { background: #d97706; }
+.bar-k { background: #9333ea; }
+
+.trend-col-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.trend-date-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.trend-ph-pill {
+  font-size: 10px;
+  font-weight: 700;
+  color: #16a34a;
+  background: #dcfce7;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ── AI Assistance Promo Banner ── */
+.soil-ai-promo-banner {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 10px 20px rgba(5, 150, 105, 0.15);
+}
+
+.ai-promo-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.ai-promo-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ai-promo-text h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.ai-promo-text p {
+  font-size: 14px;
+  color: #e6f4ea;
+  margin-top: 4px;
+}
+
+.btn-ask-ai {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #047857;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-ask-ai:hover {
+  background: #f0fdf4;
+  transform: translateY(-1px);
+}
+
+/* ── Soil Details Modal Formatting ── */
+.soil-modal-params-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.modal-param-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.m-param-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+.m-param-val { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-top: 2px; }
+
+.micronutrients-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 12px;
+}
+
+.micro-item { display: flex; justify-content: space-between; font-size: 12px; }
+.micro-label { color: var(--text-secondary); font-weight: 500; }
+.micro-val { color: var(--text-primary); font-weight: 700; }
+
+.soil-fertilizer-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--border-radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fertilizer-title { font-size: 13px; font-weight: 700; color: #166534; display: flex; align-items: center; gap: 6px; }
+.fertilizer-text { font-size: 13px; color: #15803d; line-height: 1.5; }
+
+.notes-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ── Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .soil-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .soil-page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add-soil {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .soil-farm-selector-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .soil-farm-select {
+    width: 100%;
+  }
+
+  .soil-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .history-table-wrapper { display: none; }
+  .history-mobile-cards { display: flex; }
+
+  .soil-ai-promo-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .ai-promo-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-ask-ai {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .soil-modal-params-grid, .micronutrients-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .soil-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .soil-modal-params-grid, .micronutrients-grid {
+    grid-template-columns: 1fr;
+  }
+}

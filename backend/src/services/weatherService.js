@@ -37,6 +37,10 @@ const getWeather = async (latitude, longitude) => {
   throw new Error("Unable to fetch weather data");
 }
 };
+console.log(
+  "Weather API key loaded:",
+  process.env.WEATHER_API_KEY ? "YES" : "NO"
+);
 export const getWeatherForecast = async (latitude, longitude) => {
   try {
     const response = await axios.get(

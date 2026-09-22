@@ -13,6 +13,9 @@ import soilRoutes from "./src/routes/soilRoutes.js";
 import weatherRoutes from "./src/routes/weatherRoutes.js";
 import irrigationRoutes from "./src/routes/irrigationRoutes.js"; 
 import marketRoutes from "./src/routes/marketRoutes.js"; 
+import governmentSchemeRoutes from "./src/routes/governmentSchemeRoutes.js";
+import diseaseRoutes from "./src/routes/diseaseRoutes.js";
+
 const app = express();
 
 // ===============================
@@ -77,6 +80,8 @@ app.use("/api/weather", weatherRoutes);
 app.use("/api/irrigation", irrigationRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/market", marketRoutes);
+app.use("/api/schemes", governmentSchemeRoutes);
+app.use("/api/disease", diseaseRoutes);
 // ===============================
 // 404 Handler
 // ===============================

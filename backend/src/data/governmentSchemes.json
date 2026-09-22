@@ -1,0 +1,1221 @@
+[
+  {
+    "name": "Pradhan Mantri Kisan Samman Nidhi",
+    "shortName": "PM-KISAN",
+    "description": "Central Sector Scheme providing income support of Rs. 6,000 per year to all landholding farmer families across the country, paid in three equal installments of Rs. 2,000 every four months directly into Aadhaar-linked bank accounts via Direct Benefit Transfer (DBT).",
+    "state": "All India",
+    "level": "central",
+    "category": "farmer_welfare",
+    "benefits": [
+      "Rs. 6,000 per year in three equal installments of Rs. 2,000",
+      "Direct Benefit Transfer to Aadhaar-linked bank accounts",
+      "No intermediary — funds transferred directly by Government of India"
+    ],
+    "eligibility": [
+      "All landholding farmer families with cultivable land",
+      "Must be an Indian citizen",
+      "Must have Aadhaar-linked bank account",
+      "eKYC completion is mandatory",
+      "Institutional landholders are excluded",
+      "Income tax payers are excluded",
+      "Serving or retired government officers (above MTS/Group D) are excluded",
+      "Professionals registered with professional bodies (doctors, engineers, lawyers, CAs, architects) are excluded",
+      "Pensioners receiving monthly pension of Rs. 10,000 or more are excluded"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Aadhaar-linked bank account details",
+      "Land ownership records",
+      "Mobile number for OTP authentication"
+    ],
+    "applicationProcess": [
+      "Visit the official PM-KISAN portal at https://pmkisan.gov.in",
+      "Click on 'New Farmer Registration' under Farmer's Corner",
+      "Select Rural or Urban farmer registration",
+      "Enter Aadhaar number and fill required details",
+      "Application verified by state/district authorities",
+      "Alternatively, visit nearest Common Service Centre (CSC) for registration"
+    ],
+    "officialUrl": "https://pmkisan.gov.in",
+    "informationUrl": "https://pmkisan.gov.in",
+    "helpline": "155261 / 011-24300606",
+    "lastUpdated": "2026-06-28",
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Pradhan Mantri Fasal Bima Yojana",
+    "shortName": "PMFBY",
+    "description": "Government-sponsored crop insurance scheme that provides comprehensive insurance coverage against crop loss due to non-preventable natural risks including drought, flood, cyclone, hailstorm, pest/disease attacks, and other natural calamities. It integrates multiple stakeholders on a single platform.",
+    "state": "All India",
+    "level": "central",
+    "category": "insurance",
+    "benefits": [
+      "Comprehensive crop insurance against natural calamities, pests, and diseases",
+      "Low premium rates: 2% for Kharif crops, 1.5% for Rabi crops, 5% for commercial/horticultural crops",
+      "Balance premium paid by Government (Centre and State in 50:50 ratio)",
+      "Coverage from pre-sowing to post-harvest (up to 14 days)",
+      "Individual farm-level loss assessment using technology (satellite imagery, drones, smartphones)"
+    ],
+    "eligibility": [
+      "All farmers including sharecroppers and tenant farmers growing notified crops in notified areas",
+      "Loanee farmers covered on a voluntary basis (since Kharif 2020)",
+      "Non-loanee farmers can voluntarily opt for the scheme",
+      "Enrollment within the cut-off dates notified for each season"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Bank account details",
+      "Land ownership records / tenancy agreement / lease agreement",
+      "Sowing declaration by the farmer",
+      "Crop sowing certificate from village revenue officer"
+    ],
+    "applicationProcess": [
+      "Visit the official PMFBY portal at https://pmfby.gov.in",
+      "Register as a farmer user",
+      "Select the season, year, state, district, and crop",
+      "Fill in bank details and land information",
+      "Pay the farmer's share of premium",
+      "Alternatively, apply through nearest bank branch or CSC",
+      "For grievances, use Krishi Rakshak Portal or call helpline 14447"
+    ],
+    "officialUrl": "https://pmfby.gov.in",
+    "informationUrl": "https://pmfby.gov.in",
+    "helpline": "14447",
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Restructured Weather Based Crop Insurance Scheme",
+    "shortName": "RWBCIS",
+    "description": "Government-sponsored crop insurance scheme that uses weather parameters (rainfall, temperature, relative humidity, wind speed) as a proxy for crop yields to provide financial protection to farmers against weather-related crop losses. Claims are settled based on data from Automatic Weather Stations.",
+    "state": "All India",
+    "level": "central",
+    "category": "insurance",
+    "benefits": [
+      "Financial protection against weather-related crop losses (drought, excess rain, extreme temperatures, humidity, wind)",
+      "Faster claim settlement based on objective weather data from Automatic Weather Stations",
+      "Subsidized premium rates similar to PMFBY",
+      "Transparent process with no manual yield estimation disputes"
+    ],
+    "eligibility": [
+      "All farmers including sharecroppers and tenant farmers growing notified crops in notified areas",
+      "Loanee farmers who have availed seasonal agricultural operation loans for notified crops",
+      "Non-loanee farmers who voluntarily opt for coverage"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Bank account details",
+      "Land ownership records or tenancy/lease agreement",
+      "Crop sowing details"
+    ],
+    "applicationProcess": [
+      "Visit the official PMFBY portal at https://pmfby.gov.in",
+      "Register as a farmer user",
+      "Select RWBCIS and fill in required details",
+      "Alternatively, apply through nearest bank branch or CSC",
+      "For grievances, use Krishi Rakshak Portal or call helpline 14447"
+    ],
+    "officialUrl": "https://pmfby.gov.in",
+    "informationUrl": "https://pmfby.gov.in",
+    "helpline": "14447",
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Pradhan Mantri Kisan Maandhan Yojana",
+    "shortName": "PM-KMY",
+    "description": "Voluntary and contributory pension scheme for Small and Marginal Farmers (SMF) that provides a minimum monthly pension of Rs. 3,000 after attaining the age of 60. The Government of India provides an equal matching contribution to the pension fund managed by LIC.",
+    "state": "All India",
+    "level": "central",
+    "category": "farmer_welfare",
+    "benefits": [
+      "Minimum monthly pension of Rs. 3,000 after age 60",
+      "Government provides equal matching contribution",
+      "Family pension: Spouse receives 50% of pension on farmer's death",
+      "Monthly contribution ranges from Rs. 55 to Rs. 200 depending on age of entry",
+      "Option to have contribution debited from PM-KISAN benefits"
+    ],
+    "eligibility": [
+      "Small and Marginal Farmers owning cultivable land up to 2 hectares",
+      "Age between 18 and 40 years",
+      "Must not be covered under other social security schemes (NPS, EPFO, etc.)",
+      "Must not hold constitutional or high-ranking government posts"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Bank account or savings bank passbook",
+      "Land ownership records as per state land records"
+    ],
+    "applicationProcess": [
+      "Visit the official portal at https://maandhan.in",
+      "Register online with Aadhaar and bank details",
+      "Alternatively, visit nearest Common Service Centre (CSC) for free enrollment",
+      "PM-KISAN beneficiaries can opt for auto-debit from PM-KISAN installments"
+    ],
+    "officialUrl": "https://maandhan.in",
+    "informationUrl": "https://maandhan.in",
+    "helpline": "1800-267-6888",
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Kisan Credit Card Scheme",
+    "shortName": "KCC",
+    "description": "Government-backed credit scheme providing timely and adequate short-term credit to farmers for crop production, post-harvest expenses, consumption needs, and working capital for allied activities including animal husbandry and fisheries, at concessional interest rates.",
+    "state": "All India",
+    "level": "central",
+    "category": "finance",
+    "benefits": [
+      "Short-term credit at 7% per annum interest rate",
+      "Effective interest rate as low as 4% per annum with 2% interest subvention and 3% prompt repayment incentive",
+      "Revolving cash credit facility — withdraw as needed",
+      "ATM-enabled RuPay debit card",
+      "Crop insurance under PMFBY included",
+      "Personal accident insurance coverage",
+      "Collateral-free loans up to Rs. 2 lakh",
+      "Card valid for 5 years with annual review",
+      "10% annual increment for cost escalation"
+    ],
+    "eligibility": [
+      "Owner cultivators (individual or joint)",
+      "Tenant farmers, oral lessees, and sharecroppers",
+      "Self-Help Groups (SHGs) and Joint Liability Groups (JLGs) of farmers",
+      "Farmers engaged in crop production, animal husbandry, or fisheries"
+    ],
+    "requiredDocuments": [
+      "Completed application form (simplified one-page form available)",
+      "Two passport-sized photographs",
+      "Proof of identity (Aadhaar Card)",
+      "Proof of landholding certified by revenue authorities",
+      "Details of crops grown",
+      "Bank passbook"
+    ],
+    "applicationProcess": [
+      "Visit nearest bank branch (scheduled commercial bank, cooperative bank, RRB)",
+      "Submit completed KCC application form with required documents",
+      "PM-KISAN beneficiaries can apply through PM-KISAN portal",
+      "Apply through Common Service Centre (CSC)",
+      "Check eligibility through Jan Samarth portal (https://www.jansamarth.in)"
+    ],
+    "officialUrl": "https://pmkisan.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in/schemes/kcc",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare / Reserve Bank of India / NABARD"
+  },
+  {
+    "name": "Pradhan Mantri Krishi Sinchayee Yojana - Per Drop More Crop",
+    "shortName": "PMKSY-PDMC",
+    "description": "Central government scheme promoting micro-irrigation (drip and sprinkler systems) to improve water use efficiency in agriculture under the 'Per Drop More Crop' component. Provides subsidies to farmers for adoption of precision irrigation technologies.",
+    "state": "All India",
+    "level": "central",
+    "category": "irrigation",
+    "benefits": [
+      "55% subsidy on micro-irrigation equipment for Small and Marginal Farmers",
+      "45% subsidy on micro-irrigation equipment for other farmers",
+      "Support for drip irrigation, sprinkler irrigation, and other precision irrigation systems",
+      "Improved water use efficiency and crop productivity",
+      "Funding shared between Centre and State (60:40 ratio for general states)"
+    ],
+    "eligibility": [
+      "All categories of farmers (small, marginal, medium, large) owning agricultural land",
+      "Members of cooperatives, SHGs, incorporated companies, and water user associations",
+      "Contract or lease farmers with lease agreement for minimum 7 years",
+      "Financial assistance limited to maximum 5 hectares per beneficiary",
+      "Repeat assistance eligible only after projected life of system (7 years)"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Proof of land ownership (ROR / Land records / Patta)",
+      "Bank passbook copy",
+      "Recent passport-sized photographs",
+      "Caste certificate (if applicable for specific state subsidies)"
+    ],
+    "applicationProcess": [
+      "Apply through State Agriculture Department — visit nearest Block Agriculture Office",
+      "Check state-specific online portals for registration",
+      "Submit application with required documents",
+      "Verification and approval by district/state authorities",
+      "Subsidy disbursed via DBT after installation and verification"
+    ],
+    "officialUrl": "https://pmksy.gov.in",
+    "informationUrl": "https://pmksy.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Sub-Mission on Agricultural Mechanization",
+    "shortName": "SMAM",
+    "description": "Central government scheme to promote agricultural mechanization by providing subsidies for purchase of farm machinery and equipment. The scheme aims to increase farm productivity by making modern agricultural equipment affordable for farmers through financial assistance.",
+    "state": "All India",
+    "level": "central",
+    "category": "equipment",
+    "benefits": [
+      "50% subsidy for Small and Marginal Farmers, SC/ST farmers, women farmers, and NE/Himalayan state farmers",
+      "40% subsidy for other categories of farmers",
+      "Higher subsidies (80-100%) for establishing Custom Hiring Centres and Farm Machinery Banks",
+      "Subsidy via Direct Benefit Transfer (DBT) after purchase verification",
+      "Covers wide range of equipment: tractors, tillers, harvesters, sprayers, seed drills, etc."
+    ],
+    "eligibility": [
+      "All farmers with valid land ownership or lease documents",
+      "Priority for small and marginal farmers",
+      "SC/ST farmers and women farmers eligible for higher subsidies",
+      "Equipment must be purchased from authorized manufacturer/dealer on DBT portal"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or valid identity proof",
+      "Land ownership or lease documents",
+      "Bank passbook or crossed cheque",
+      "Caste certificate (if applicable)"
+    ],
+    "applicationProcess": [
+      "Visit the official portal at https://agrimachinery.nic.in",
+      "Register as a farmer and fill personal, land, and bank details",
+      "Select desired machinery and submit application",
+      "Keep Application ID for tracking status",
+      "Selection may be through online lottery if applications exceed target",
+      "After approval, purchase equipment from authorized dealer",
+      "Subsidy credited via DBT after verification"
+    ],
+    "officialUrl": "https://agrimachinery.nic.in",
+    "informationUrl": "https://agrimachinery.nic.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Soil Health Card Scheme",
+    "shortName": "SHC",
+    "description": "Government of India scheme that provides soil health cards to farmers with crop-specific recommendations on nutrients and fertilizers. The card contains detailed analysis of 12 essential soil parameters to help farmers optimize fertilizer use, reduce costs, and improve crop productivity.",
+    "state": "All India",
+    "level": "central",
+    "category": "soil",
+    "benefits": [
+      "Detailed report on 12 soil parameters: N, P, K, S, Zn, Fe, Cu, Mn, B, pH, EC, and Organic Carbon",
+      "Crop-specific fertilizer and soil amendment recommendations",
+      "Helps prevent overuse of chemicals and fertilizers",
+      "Reduces farming costs through optimized nutrient management",
+      "Cards available in multiple languages for download on official portal",
+      "Free of cost to all farmers"
+    ],
+    "eligibility": [
+      "All farmers across India — no restrictive eligibility criteria",
+      "Scheme aims to cover all land holdings for sustainable agriculture"
+    ],
+    "requiredDocuments": [
+      "Farmer identity details (name, address)",
+      "Mobile number",
+      "Land/field location details"
+    ],
+    "applicationProcess": [
+      "State government officials collect soil samples from farmers' fields (15-20 cm depth) using GPS-based tools",
+      "Samples tested at authorized Soil Testing Laboratories",
+      "Results updated on the official SHC portal and Soil Health Card generated",
+      "Farmers can search and download their card at https://soilhealth.dac.gov.in using phone number or name",
+      "SMS notification sent to farmers when card is ready"
+    ],
+    "officialUrl": "https://soilhealth.dac.gov.in",
+    "informationUrl": "https://soilhealth.dac.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Paramparagat Krishi Vikas Yojana",
+    "shortName": "PKVY",
+    "description": "Sub-component of the National Mission for Sustainable Agriculture (NMSA) promoting organic farming through cluster-based approaches. Provides financial assistance to farmers for adopting organic farming practices using traditional, eco-friendly, and low-cost technologies with Participatory Guarantee System (PGS-India) certification.",
+    "state": "All India",
+    "level": "central",
+    "category": "organic_farming",
+    "benefits": [
+      "Financial assistance of approximately Rs. 31,000 to Rs. 50,000 per hectare over 3 years",
+      "Support for organic inputs, on-farm input infrastructure, and marketing",
+      "Participatory Guarantee System (PGS-India) organic certification",
+      "Cluster-based approach (20 hectares) for shared resources and collective marketing",
+      "Funding: 60:40 (Centre:State) for general states; 90:10 for NE/Himalayan states"
+    ],
+    "eligibility": [
+      "All farmers and institutions interested in transitioning to organic farming",
+      "Must be willing to join a cluster or Local Group",
+      "Must adopt organic practices compliant with PGS-India standards",
+      "Focus on smallholder farmers"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land ownership documents",
+      "Bank account details",
+      "Caste certificate (if applicable)",
+      "Mobile/contact information"
+    ],
+    "applicationProcess": [
+      "Contact local Department of Agriculture or regional councils/nodal agencies",
+      "Register through state-specific agricultural portals",
+      "Join an existing cluster or form a new Local Group",
+      "Visit the Jaivik Kheti Portal (https://jaivikkheti.in) for registration and guidelines",
+      "Contact district agriculture office for current application procedures"
+    ],
+    "officialUrl": "https://jaivikkheti.in",
+    "informationUrl": "https://pgsindia-ncof.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyan",
+    "shortName": "PM-KUSUM",
+    "description": "Flagship scheme of the Ministry of New and Renewable Energy (MNRE) promoting solar energy in agriculture through three components: ground-mounted solar power plants, standalone solar agriculture pumps, and solarization of existing grid-connected agriculture pumps.",
+    "state": "All India",
+    "level": "central",
+    "category": "solar",
+    "benefits": [
+      "Component A: Decentralized ground-mounted solar/RE power plants (500 kW to 2 MW) on barren/fallow land",
+      "Component B: Standalone solar agriculture pumps for individual farmers in off-grid areas",
+      "Component C: Solarization of existing grid-connected agriculture pumps",
+      "Central subsidy of approximately 30% and state subsidy of approximately 30% (farmer contributes remaining 40%)",
+      "Reliable daytime power for irrigation, reducing dependence on diesel",
+      "Additional income from selling surplus solar power to the grid"
+    ],
+    "eligibility": [
+      "Individual farmers, groups of farmers, cooperatives, panchayats, FPOs, and Water User Associations",
+      "For Component A: Farmers with barren, fallow, or agricultural land",
+      "For Component B: Farmers in off-grid areas needing irrigation",
+      "For Component C: Farmers with existing grid-connected agriculture pumps"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Proof of land ownership or valid lease agreement",
+      "Bank account details (for subsidy disbursement)",
+      "Existing electricity connection details (for pump-related components)"
+    ],
+    "applicationProcess": [
+      "Visit the official PM-KUSUM portal at https://pmkusum.mnre.gov.in",
+      "Select your state to see local registration options",
+      "Apply through your respective state's agriculture/renewable energy department portal",
+      "Alternatively, visit nearest Agriculture Department or state nodal agency office",
+      "WARNING: Do not use unofficial websites or apps — official registration is free through government channels"
+    ],
+    "officialUrl": "https://pmkusum.mnre.gov.in",
+    "informationUrl": "https://mnre.gov.in",
+    "helpline": "1800-180-3333",
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Ministry of New and Renewable Energy (MNRE), Government of India"
+  },
+  {
+    "name": "Agriculture Infrastructure Fund",
+    "shortName": "AIF",
+    "description": "Central Sector Scheme providing medium-to-long-term debt financing for investment in viable post-harvest management infrastructure and community farming assets. Offers interest subvention and credit guarantee coverage on loans from participating financial institutions.",
+    "state": "All India",
+    "level": "central",
+    "category": "infrastructure",
+    "benefits": [
+      "3% per annum interest subvention on loans up to Rs. 2 crore per project for 7 years",
+      "Credit guarantee coverage under CGTMSE for loans up to Rs. 2 crore (government pays the fee)",
+      "Convergence with other Central and State schemes (PMFME, SMAM, PM-KUSUM, MIDH, etc.)",
+      "Supports warehouses, cold storage, silos, sorting/grading/packaging units, logistics facilities",
+      "Supports precision agriculture, farm automation, drones, IoT, AI applications"
+    ],
+    "eligibility": [
+      "Individual farmers (subject to guidelines)",
+      "Farmer Producer Organizations (FPOs), Cooperatives, SHGs, JLGs",
+      "Agri-entrepreneurs and startups",
+      "Agricultural Produce Market Committees (APMCs)",
+      "Custom Hiring Centre (CHC) owners and agri-service providers",
+      "State agencies, local bodies, and PPP projects"
+    ],
+    "requiredDocuments": [
+      "Project report/proposal",
+      "Identity proof (Aadhaar Card)",
+      "Business registration documents (if applicable)",
+      "Bank account details",
+      "Land ownership or lease documents for the project site"
+    ],
+    "applicationProcess": [
+      "Visit the official AIF portal at https://agriinfra.dac.gov.in",
+      "Register and submit a project proposal",
+      "Loan sanctioned by participating financial institution (commercial banks, cooperative banks, RRBs, SFBs, NBFCs)",
+      "Interest subvention and credit guarantee automatically applied on eligible loans"
+    ],
+    "officialUrl": "https://agriinfra.dac.gov.in",
+    "informationUrl": "https://agriinfra.dac.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "National Agriculture Market",
+    "shortName": "e-NAM",
+    "description": "Pan-India electronic trading portal that networks existing APMC mandis into a unified national market for agricultural commodities. Promotes transparency, better price discovery, and efficient marketing by enabling online bidding and direct electronic payments to farmers.",
+    "state": "All India",
+    "level": "central",
+    "category": "other",
+    "benefits": [
+      "Transparent online bidding for better price discovery",
+      "Access to buyers and traders beyond local mandis — national marketplace",
+      "Digital recording of arrivals, quality assaying, and auctioning for fair transactions",
+      "Direct electronic payments (RTGS, NEFT, BHIM, UPI) to farmer's bank account",
+      "Real-time market prices and trade information via e-NAM mobile app",
+      "Free registration for farmers"
+    ],
+    "eligibility": [
+      "Any farmer with agricultural land in a state/UT connected to the e-NAM network",
+      "Registration on e-NAM portal is free"
+    ],
+    "requiredDocuments": [
+      "Personal details (Name, Address, DOB, Mobile Number)",
+      "Bank account details (passbook or cheque leaf)",
+      "Government-issued identity proof (Aadhaar Card)",
+      "Land ownership documents"
+    ],
+    "applicationProcess": [
+      "Visit the official portal at https://www.enam.gov.in",
+      "Select 'Registration' as 'Farmer' and fill in required details",
+      "Alternatively, visit nearest e-NAM enabled mandi with documents",
+      "Details verified by selected APMC",
+      "Receive login ID and password after approval"
+    ],
+    "officialUrl": "https://www.enam.gov.in",
+    "informationUrl": "https://www.enam.gov.in",
+    "helpline": "1800-270-0224",
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Mission for Integrated Development of Horticulture",
+    "shortName": "MIDH",
+    "description": "Centrally sponsored scheme for holistic growth of the horticulture sector covering fruits, vegetables, root and tuber crops, mushrooms, spices, flowers, aromatic plants, coconut, cashew, cocoa, and bamboo. Provides financial and technical support through multiple sub-missions including NHM, HMNEH, NHB, and CDB.",
+    "state": "All India",
+    "level": "central",
+    "category": "horticulture",
+    "benefits": [
+      "Approximately 50% subsidy for protected cultivation (polyhouses, greenhouses above 500 sqm)",
+      "45-55% subsidy for micro-irrigation, with higher support for small and marginal farmers",
+      "35-50% financial assistance for cold chain and post-harvest management infrastructure",
+      "Assistance for nurseries and tissue culture units for quality planting material",
+      "Funding: 60:40 (Centre:State) for general states; 90:10 for NE/Himalayan states"
+    ],
+    "eligibility": [
+      "Farmers engaged in horticulture",
+      "Farmer Producer Organizations (FPOs)",
+      "Farmer Interest Groups (FIGs)",
+      "Other eligible horticulture stakeholders"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land ownership or lease documents",
+      "Bank account details",
+      "Project proposal (for infrastructure components)"
+    ],
+    "applicationProcess": [
+      "Contact District Horticulture Officer or nearest State Horticulture Mission office",
+      "Submit application through state-specific agricultural portals",
+      "Use MIDH Suraksha mobile app to track applications and inspections",
+      "Verification and approval by state horticulture department"
+    ],
+    "officialUrl": "https://midh.gov.in",
+    "informationUrl": "https://midh.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Formation and Promotion of 10,000 Farmer Producer Organizations",
+    "shortName": "FPO Scheme",
+    "description": "Central Sector Scheme to organize farmers into Farmer Producer Organizations (FPOs) for achieving economies of scale in production, marketing, and value addition. Provides holistic support including financial assistance, matching equity grants, credit guarantee, and professional handholding for 5 years.",
+    "state": "All India",
+    "level": "central",
+    "category": "farmer_welfare",
+    "benefits": [
+      "Management and handholding cost: up to Rs. 18 lakh per FPO over 3 years",
+      "Matching equity grant: up to Rs. 2,000 per farmer member, maximum Rs. 15 lakh per FPO",
+      "Credit guarantee cover for project loans up to Rs. 2 crore per FPO",
+      "Professional support by Cluster-Based Business Organization (CBBO) for 5 years",
+      "Assistance with business planning, registration, market linkages, and capacity building"
+    ],
+    "eligibility": [
+      "Small, marginal, and landless farmers",
+      "Farmers in agricultural and horticultural production",
+      "Minimum 300 farmer-members required (100 in NE and hilly areas)",
+      "Must be registered under Part IXA of Companies Act, 2013 (Producer Company) or State Cooperative Societies Act"
+    ],
+    "requiredDocuments": [
+      "Registration documents of the FPO",
+      "List of farmer members with identity details",
+      "Business plan",
+      "Bank account details of the FPO"
+    ],
+    "applicationProcess": [
+      "Form a group of eligible farmers meeting minimum membership requirements",
+      "Register as Producer Company or Cooperative Society",
+      "Apply through implementing agencies: SFAC, NABARD, or NCDC",
+      "Visit SFAC portal at https://sfacindia.com for detailed guidelines"
+    ],
+    "officialUrl": "https://sfacindia.com",
+    "informationUrl": "https://sfacindia.com",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "National Mission on Edible Oils - Oil Palm",
+    "shortName": "NMEO-OP",
+    "description": "Centrally sponsored scheme to increase oil palm cultivation and reduce India's dependence on edible oil imports. Provides subsidies for planting materials, drip irrigation, farm machinery, maintenance, intercropping incentives, and includes a Viability Gap Payment mechanism to protect farmers from international price fluctuations.",
+    "state": "All India",
+    "level": "central",
+    "category": "crop",
+    "benefits": [
+      "Subsidies for high-quality oil palm seedlings",
+      "Assistance for drip irrigation, farm machinery, and harvesting tools",
+      "Support for plantation maintenance during gestation period",
+      "Incentives for intercropping during first 4 years before full production",
+      "Viability Gap Payment (VGP) to protect farmers from international CPO price fluctuations",
+      "Development of oil palm processing infrastructure"
+    ],
+    "eligibility": [
+      "Farmers interested in oil palm cultivation in identified districts of participating states",
+      "Must have suitable land for oil palm cultivation",
+      "Priority given to small and marginal farmers"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card and Aadhaar-linked mobile number",
+      "Land ownership documents or land records",
+      "Bank account details (for DBT of subsidies)",
+      "Photographs",
+      "Soil test report or water source proof (if requested by department)"
+    ],
+    "applicationProcess": [
+      "Contact local District Agriculture Officer or Horticulture Department office",
+      "Register through state-specific agricultural portals",
+      "Submit application with required documents",
+      "Visit nearest Uzhavar Maiyam (Farmers' Centre) in Tamil Nadu for assistance"
+    ],
+    "officialUrl": "https://nmeo.dac.gov.in",
+    "informationUrl": "https://nmeo.dac.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Namo Drone Didi",
+    "shortName": "Namo Drone Didi",
+    "description": "Central Sector Scheme to provide drones to 15,000 Women Self-Help Groups (SHGs) under DAY-NRLM for offering agricultural drone rental services to farmers. Provides 80% subsidy on drone cost, training for drone pilots, and supports income generation for women SHGs.",
+    "state": "All India",
+    "level": "central",
+    "category": "equipment",
+    "benefits": [
+      "80% Central Financial Assistance on drone cost, up to Rs. 8 lakh",
+      "Remaining cost covered through AIF loan with 3% interest subvention",
+      "Mandatory training: one SHG member as drone pilot, one as drone assistant",
+      "Income generation for women SHGs through drone rental services",
+      "Precision application of fertilizers and pesticides for farmers"
+    ],
+    "eligibility": [
+      "Women-led Self-Help Groups (SHGs) promoted under DAY-NRLM",
+      "SHGs must be part of identified clusters for drone usage"
+    ],
+    "requiredDocuments": [
+      "SHG registration documents",
+      "DAY-NRLM membership proof",
+      "Identity documents of SHG members",
+      "Bank account details of the SHG"
+    ],
+    "applicationProcess": [
+      "Apply through DAY-NRLM channels at state/district level",
+      "Selection of SHGs by implementing agencies",
+      "Training provided to selected SHG members",
+      "Drone provided after successful completion of training"
+    ],
+    "officialUrl": "https://lakhpatididi.gov.in",
+    "informationUrl": "https://www.india.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare / Ministry of Rural Development, Government of India"
+  },
+  {
+    "name": "Digital Agriculture Mission",
+    "shortName": "DAM",
+    "description": "Umbrella scheme to build Digital Public Infrastructure for agriculture including AgriStack (Farmer Registry, Geo-Referenced Village Maps, Crop Sown Registry), Krishi Decision Support System (KDSS), and Soil Resource Mapping at village level. Creates a farmer-centric digital identity system for improving access to credit, insurance, and government services.",
+    "state": "All India",
+    "level": "central",
+    "category": "other",
+    "benefits": [
+      "Unique Farmer ID (Kisan ki Pehchaan) for easier access to credit, insurance, and procurement",
+      "Farmers' Registry linking demographics and land holdings digitally",
+      "Crop Sown Registry for tracking what farmers grow",
+      "Satellite-based crop mapping and automated yield estimation",
+      "Village-level soil resource mapping using high-resolution data",
+      "Evidence-based decision support for farmers and government"
+    ],
+    "eligibility": [
+      "All farmers across India benefit through creation of Farmer IDs",
+      "Government-led initiative — no direct application required from farmers"
+    ],
+    "requiredDocuments": [],
+    "applicationProcess": [
+      "Government-led initiative implemented by Central and State Governments",
+      "Farmer IDs being created through coordination with state agriculture departments",
+      "No separate application process for farmers — integration with existing schemes"
+    ],
+    "officialUrl": "https://agricoop.gov.in",
+    "informationUrl": "https://agricoop.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  },
+  {
+    "name": "Kalaignarin All Village Integrated Agricultural Development Programme",
+    "shortName": "KAVIADP",
+    "description": "Major initiative of the Government of Tamil Nadu for comprehensive agricultural development across all 12,525 village panchayats over 5 years. Integrates services from over 15 government departments to fulfill farmers' needs, increase income, bring fallow lands under cultivation, and promote sustainable rural development.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "farmer_welfare",
+    "benefits": [
+      "Sinking of borewells in fallow land clusters",
+      "Establishment of farm ponds",
+      "Desilting of channels, tanks, and ooranis (traditional water bodies)",
+      "100% subsidy for Adi Dravida farmers for wells, drip irrigation, and farm ponds",
+      "Distribution of coconut, horticultural, and tree saplings",
+      "Home garden and vegetable cultivation kits with Rs. 5,000 incentive",
+      "Distribution of farming sprayers and pulse seeds for bund cropping",
+      "Subsidies for agricultural machinery",
+      "Formation of Farmer Producer Organisations (FPOs) with technical training",
+      "Increased access to crop loans through cooperative societies"
+    ],
+    "eligibility": [
+      "Farming families residing in selected village panchayats in Tamil Nadu",
+      "All districts except Chennai and Nilgiris",
+      "Specific components may have additional criteria based on land ownership, social category, or small/marginal farmer status",
+      "Special provisions for Adi Dravida (SC/ST) farmers"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land ownership documents (Patta, Chitta, Adangal)",
+      "Community certificate (for SC/ST benefits)",
+      "Bank account details"
+    ],
+    "applicationProcess": [
+      "Contact local Agriculture Department office",
+      "Visit Village Panchayat office for information on active components",
+      "Contact district Agricultural Engineering Department",
+      "Apply through local Assistant Agricultural Officer (AAO)",
+      "Visit TNAU Agritech Portal (https://agritech.tnau.ac.in) for technical guidance"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://agritech.tnau.ac.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu"
+  },
+  {
+    "name": "Tamil Nadu Millet Mission",
+    "shortName": "TN Millet Mission",
+    "description": "State-led mission focused on increasing area, production, and productivity of millets (Pearl Millet/Cumbu, Sorghum/Cholam, Finger Millet/Ragi) in Tamil Nadu. Supports approximately 4.75 lakh farmers across 11.80 lakh acres with subsidies, seed minikits, machinery hiring centres, and processing centres.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "crop",
+    "benefits": [
+      "Subsidies through alternate crop cultivation packages",
+      "Distribution of seed minikits for improved millet varieties",
+      "Establishment of Agricultural Machinery Hiring Centres",
+      "Establishment of Primary Processing Centres",
+      "Training on modern cultivation technologies and value addition",
+      "Formation of farmer groups for collective marketing",
+      "Outlay of Rs. 63.81 crore jointly funded by Union and State governments"
+    ],
+    "eligibility": [
+      "Farmers residing in Tamil Nadu",
+      "Farmers engaged in cultivation of major or minor millets",
+      "Farmers looking to adopt improved millet cultivation technologies"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land ownership documents",
+      "Bank account details",
+      "Identity proof"
+    ],
+    "applicationProcess": [
+      "Contact nearest Assistant Agricultural Officer (AAO) at village level",
+      "Visit Agricultural Officer (AO) at Block level for current application procedures",
+      "Enrollment notifications issued through official state agricultural portals or local block offices"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://agritech.tnau.ac.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu"
+  },
+  {
+    "name": "Tamil Nadu Minor Millet Mission",
+    "shortName": "TN Minor Millet Mission",
+    "description": "State-funded mission to promote minor millets including foxtail millet, little millet, kodo millet, barnyard millet, and proso millet in Tamil Nadu. Allocated Rs. 7.61 crore from state funds to support farmers in cultivating and marketing minor millets.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "crop",
+    "benefits": [
+      "Subsidies for minor millet cultivation",
+      "Distribution of improved seed varieties",
+      "Support for value addition and processing",
+      "Marketing support for minor millet products"
+    ],
+    "eligibility": [
+      "Farmers residing in Tamil Nadu",
+      "Farmers engaged in or interested in minor millet cultivation"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land ownership documents",
+      "Bank account details"
+    ],
+    "applicationProcess": [
+      "Contact nearest Assistant Agricultural Officer (AAO)",
+      "Visit Agricultural Officer (AO) at Block level",
+      "Apply through local agriculture department office"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://agritech.tnau.ac.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu"
+  },
+  {
+    "name": "Chief Minister's Uzhavar Pathukappu Thittam",
+    "shortName": "Uzhavar Pathukappu",
+    "description": "Social security and welfare scheme of the Government of Tamil Nadu for farmers and agricultural labourers. Provides financial assistance for marriage, educational expenses, old-age pensions, accident relief, and funeral expenses. Also includes input subsidies for seeds, bio-fertilizers, and irrigation.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "farmer_welfare",
+    "benefits": [
+      "Financial assistance for marriage expenses",
+      "Support for educational expenses of farmer families",
+      "Old-age pension for farmers",
+      "Accident relief and disability compensation",
+      "Funeral expense assistance",
+      "Input subsidies for seeds and bio-fertilizers",
+      "Support for drip/sprinkler irrigation adoption"
+    ],
+    "eligibility": [
+      "Small and marginal farmers in Tamil Nadu",
+      "Farmers engaged in horticulture, sericulture, dairy farming, poultry, and inland fishing",
+      "Agricultural labourers",
+      "Farmers who utilize regulated markets for their produce"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Farmer identity card or registration",
+      "Land ownership documents",
+      "Bank account details",
+      "Community certificate (if applicable)"
+    ],
+    "applicationProcess": [
+      "Apply through local Agriculture Extension Officer",
+      "Visit nearest Block Agricultural Office",
+      "Submit application with required documents",
+      "Check official state portal at https://agri.tn.gov.in for updates"
+    ],
+    "officialUrl": "https://agri.tn.gov.in",
+    "informationUrl": "https://agri.tn.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu"
+  },
+  {
+    "name": "Tamil Nadu Micro Irrigation Scheme",
+    "shortName": "TN Micro Irrigation",
+    "description": "Tamil Nadu state scheme providing high subsidies for micro-irrigation systems (drip and sprinkler) to farmers under the PMKSY framework. Small and marginal farmers receive up to 100% subsidy and other farmers up to 75% subsidy for drip and sprinkler irrigation installation.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "irrigation",
+    "benefits": [
+      "Up to 100% subsidy for Small and Marginal Farmers for drip and sprinkler irrigation",
+      "Up to 75% subsidy for other farmers",
+      "Coverage up to 5 hectares per beneficiary",
+      "Improved water use efficiency and crop productivity",
+      "Installation by empanelled micro-irrigation companies"
+    ],
+    "eligibility": [
+      "Must be a farmer cultivating land in Tamil Nadu",
+      "Maximum coverage of 5 hectares per beneficiary",
+      "Must have a water source (well, borewell, or canal)",
+      "Land ownership documents required"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land records (proof of ownership - Patta, Chitta, Adangal)",
+      "Bank account details (for Direct Benefit Transfer)",
+      "Proof of water source (well, borewell, or canal)"
+    ],
+    "applicationProcess": [
+      "Apply through Tamil Nadu Horticulture Development Agency",
+      "Apply through Uzhavan App",
+      "Officials from Agricultural Engineering Department conduct site inspection",
+      "Technical sanction issued after inspection",
+      "System installed by empanelled micro-irrigation company",
+      "Subsidy disbursed after final verification of installation"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://agritech.tnau.ac.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare / Agricultural Engineering Department, Government of Tamil Nadu"
+  },
+  {
+    "name": "Tamil Nadu Seed Multiplication Scheme",
+    "shortName": "TN Seed Multiplication",
+    "description": "Tamil Nadu state scheme providing subsidies and premium payments to farmers who produce seeds (paddy, millets, pulses, oilseeds, cotton) under contract with the Department of Agriculture. Ensures availability of quality certified seeds for the state's agricultural needs.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "crop",
+    "benefits": [
+      "Subsidies for seed production under contract farming",
+      "Premium payments over market price for quality seed production",
+      "Support for certified seed production of paddy, millets, pulses, oilseeds, and cotton",
+      "Technical guidance from Department of Agriculture"
+    ],
+    "eligibility": [
+      "Farmers in Tamil Nadu willing to produce seeds under contract with the Department of Agriculture",
+      "Must follow quality standards and guidelines prescribed by the department"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or Voter ID",
+      "Land ownership or lease documents",
+      "Bank account details"
+    ],
+    "applicationProcess": [
+      "Collect application form from nearest Agricultural Office",
+      "Fill out the form and attach mandatory documents",
+      "Submit application to Assistant Agricultural Officer at village level or Agricultural/Deputy Agricultural Officer at block level"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in/schemes/sms-tn",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "Distribution of Certified Seeds of Maize - Tamil Nadu",
+    "shortName": "TN Maize Seeds",
+    "description": "Tamil Nadu state scheme providing subsidized certified maize seeds to farmers in select districts including Coimbatore, Erode, Salem, Madurai, and others to improve maize productivity and adoption of improved varieties.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "crop",
+    "benefits": [
+      "Subsidized certified maize seeds for farmers",
+      "Improved maize varieties for better productivity",
+      "Focus on select maize-growing districts"
+    ],
+    "eligibility": [
+      "Maize-growing farmers in selected districts of Tamil Nadu (Coimbatore, Erode, Salem, Madurai, etc.)",
+      "Must be a farmer residing in Tamil Nadu"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or Voter ID",
+      "Land ownership or lease documents",
+      "Bank account details"
+    ],
+    "applicationProcess": [
+      "Collect application form from nearest Agricultural Office",
+      "Fill out form and attach mandatory documents",
+      "Submit to Assistant Agricultural Officer or Agricultural Officer at block level"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "Distribution of Minikits (Maize) - Tamil Nadu",
+    "shortName": "TN Maize Minikits",
+    "description": "Tamil Nadu state scheme providing free-of-cost minikits to maize-growing farmers in select districts to promote adoption of improved maize varieties and demonstrate modern cultivation practices.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "crop",
+    "benefits": [
+      "Free-of-cost maize minikits to farmers",
+      "Improved hybrid/variety seeds for demonstration",
+      "Technical guidance on maize cultivation"
+    ],
+    "eligibility": [
+      "Maize-growing farmers in selected districts of Tamil Nadu",
+      "Priority for small, marginal, SC/ST, and women farmers"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or Voter ID",
+      "Land ownership documents"
+    ],
+    "applicationProcess": [
+      "Contact nearest Agricultural Office for availability",
+      "Submit application to Assistant Agricultural Officer at village level"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "Block Demonstrations for Pulses - Tamil Nadu",
+    "shortName": "TN Pulse Demonstrations",
+    "description": "Tamil Nadu state scheme organizing block-level demonstrations for pulse crops to showcase improved technologies and varieties. Provides subsidy of 50% of input costs or Rs. 2,000 per demonstration to participating farmers.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "crop",
+    "benefits": [
+      "Subsidy of 50% of input costs or Rs. 2,000 per demonstration",
+      "Exposure to improved pulse cultivation technologies",
+      "Free inputs for demonstration plots"
+    ],
+    "eligibility": [
+      "Farmers in Tamil Nadu willing to participate in pulse crop demonstrations",
+      "Priority for small, marginal, SC/ST, and women farmers"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or Voter ID",
+      "Land ownership or lease documents"
+    ],
+    "applicationProcess": [
+      "Contact nearest Agricultural Office",
+      "Apply through Assistant Agricultural Officer at village level or Agricultural Officer at block level"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "Block Demonstrations for Maize - Tamil Nadu",
+    "shortName": "TN Maize Demonstrations",
+    "description": "Tamil Nadu state scheme organizing block demonstrations for maize cultivation. Provides Rs. 4,000 per demonstration for 1-hectare plots to showcase modern maize cultivation techniques, with special focus on small, marginal, SC/ST, and women farmers.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "crop",
+    "benefits": [
+      "Rs. 4,000 per demonstration for 1-hectare plots",
+      "Exposure to modern maize cultivation techniques",
+      "Free inputs and technical guidance for demonstration"
+    ],
+    "eligibility": [
+      "Farmers in Tamil Nadu willing to participate in maize demonstrations",
+      "Special focus on small, marginal, SC/ST, and women farmers"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or Voter ID",
+      "Land ownership or lease documents"
+    ],
+    "applicationProcess": [
+      "Collect application form from nearest Agricultural Office",
+      "Fill form and attach documents including proof of identity and land ownership",
+      "Submit to Assistant Agricultural Officer (village level) or Agricultural/Deputy Agricultural Officer (block level)"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "Primary Cooperative Agriculture and Rural Development Bank Loan (Horticulture) - Tamil Nadu",
+    "shortName": "TN PCARDB Horticulture Loan",
+    "description": "Tamil Nadu scheme providing loans ranging from Rs. 25,000 to Rs. 2,00,000 per 0.4 hectare through Primary Cooperative Agriculture and Rural Development Banks to support horticultural activities in the state.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "horticulture",
+    "benefits": [
+      "Loans from Rs. 25,000 to Rs. 2,00,000 per 0.4 hectare",
+      "Support for horticultural crop cultivation",
+      "Cooperative bank lending with favorable terms"
+    ],
+    "eligibility": [
+      "Farmers in Tamil Nadu engaged in horticultural activities",
+      "Must be a member of the Primary Cooperative Agriculture and Rural Development Bank",
+      "Must have suitable agricultural land for horticulture"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land ownership documents (Patta)",
+      "Bank membership details",
+      "Loan application form"
+    ],
+    "applicationProcess": [
+      "Visit nearest Primary Cooperative Agriculture and Rural Development Bank (PCARDB)",
+      "Submit loan application with required documents",
+      "Bank conducts field inspection and verifies eligibility",
+      "Loan sanctioned after approval"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "Farmers Interest Group Scheme - Tamil Nadu",
+    "shortName": "TN FIG",
+    "description": "Tamil Nadu scheme providing financial assistance to Farmers Interest Groups (FIGs) consisting of 15 farmers each. Supports purchase of office equipment, training activities, and organization of district-level meetings for collective farming activities.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "farmer_welfare",
+    "benefits": [
+      "Financial assistance for groups of 15 farmers",
+      "Support for purchasing office equipment",
+      "Funding for training activities",
+      "Support for organizing district-level meetings",
+      "Strengthening of collective farming initiatives"
+    ],
+    "eligibility": [
+      "Groups of 15 farmers in Tamil Nadu",
+      "Must be engaged in agricultural activities",
+      "Must form a registered Farmers Interest Group"
+    ],
+    "requiredDocuments": [
+      "FIG registration documents",
+      "List of 15 farmer members with identity details",
+      "Bank account details of the FIG",
+      "Minutes of formation meeting"
+    ],
+    "applicationProcess": [
+      "Form a group of 15 farmers and register as a FIG",
+      "Contact nearest Agricultural Office",
+      "Submit application through local agriculture department"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "Farmers Training Scheme - Tamil Nadu",
+    "shortName": "TN Farmers Training",
+    "description": "Tamil Nadu scheme offering training sessions for farmers and agricultural labourers to enhance their skills in modern farming techniques. Provides grants to cover session costs including travel, food, and training materials.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "farmer_welfare",
+    "benefits": [
+      "Free training sessions on modern farming techniques",
+      "Grants to cover training session costs",
+      "Travel and food allowances for participating farmers",
+      "Training materials provided",
+      "Skill enhancement in latest agricultural practices"
+    ],
+    "eligibility": [
+      "Farmers and agricultural labourers in Tamil Nadu",
+      "Must be willing to attend training sessions"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or Voter ID",
+      "Farmer identity proof"
+    ],
+    "applicationProcess": [
+      "Contact nearest Agricultural Office for training schedule",
+      "Register with Assistant Agricultural Officer at village level",
+      "Attend scheduled training sessions"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "Plant Protection Equipment Subsidy - Tamil Nadu",
+    "shortName": "TN Plant Protection Equipment",
+    "description": "Tamil Nadu scheme providing subsidies for manually operated plant protection equipment to farmers, specifically targeting those raising seed farms with pulse crops to ensure effective pest and disease management.",
+    "state": "Tamil Nadu",
+    "level": "state",
+    "category": "equipment",
+    "benefits": [
+      "Subsidized manually operated plant protection equipment",
+      "Support for pest and disease management in seed farms",
+      "Focus on pulse crop protection"
+    ],
+    "eligibility": [
+      "Farmers in Tamil Nadu raising seed farms with pulse crops",
+      "Must be engaged in seed production activities"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card or Voter ID",
+      "Land ownership or lease documents",
+      "Proof of seed farm registration"
+    ],
+    "applicationProcess": [
+      "Contact nearest Agricultural Office",
+      "Submit application to Assistant Agricultural Officer or Agricultural Officer at block level"
+    ],
+    "officialUrl": "https://tnagrisnet.tn.gov.in",
+    "informationUrl": "https://www.myscheme.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Government of Tamil Nadu / myScheme.gov.in"
+  },
+  {
+    "name": "National Mission for Sustainable Agriculture - Rainfed Area Development",
+    "shortName": "NMSA-RAD",
+    "description": "Central government mission enhancing agricultural productivity in rainfed areas through integrated farming systems, water-use efficiency, soil health management, and climate-resilient agricultural practices. Supports agro-forestry, rainfed area development, and the National Bamboo Mission.",
+    "state": "All India",
+    "level": "central",
+    "category": "soil",
+    "benefits": [
+      "Support for integrated farming system approach in rainfed areas",
+      "Watershed management and water harvesting structures",
+      "Soil health improvement through biochar, vermicomposting, and green manuring",
+      "Climate-resilient crop varieties and practices",
+      "Agro-forestry support",
+      "Funding: 60:40 (Centre:State) for general states"
+    ],
+    "eligibility": [
+      "Farmers in rainfed agricultural areas",
+      "Farmers willing to adopt integrated farming and sustainable practices",
+      "No specific landholding restriction"
+    ],
+    "requiredDocuments": [
+      "Aadhaar Card",
+      "Land ownership documents",
+      "Bank account details"
+    ],
+    "applicationProcess": [
+      "Contact local Department of Agriculture or district agriculture office",
+      "Apply through state agriculture department",
+      "Participate in watershed and cluster-based development activities"
+    ],
+    "officialUrl": "https://nmsa.dac.gov.in",
+    "informationUrl": "https://nmsa.dac.gov.in",
+    "helpline": null,
+    "lastUpdated": null,
+    "isActive": true,
+    "source": "Department of Agriculture and Farmers Welfare, Ministry of Agriculture and Farmers Welfare, Government of India"
+  }
+]
