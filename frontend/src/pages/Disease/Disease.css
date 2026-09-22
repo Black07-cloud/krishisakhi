@@ -1,0 +1,629 @@
+/* ============================================================
+   Disease Detection Module Styles — Farmio
+   ============================================================ */
+
+.disease-page {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Page Header ── */
+.disease-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.disease-header-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.disease-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.disease-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.btn-new-scan {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-new-scan:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(22, 163, 74, 0.3);
+}
+
+/* ── Two-Column Main Layout ── */
+.disease-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ── Disease Scan Form Card ── */
+.disease-scan-form-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.form-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.header-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #dcfce7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.form-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.form-card-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ── Image Uploader Component ── */
+.disease-uploader-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.uploader-error-banner {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--border-radius-sm);
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.uploader-dropzone {
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--border-radius);
+  padding: 24px;
+  background: #f8fafc;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.uploader-dropzone:hover, .dropzone-active {
+  border-color: var(--color-primary);
+  background: #f0fdf4;
+}
+
+.dropzone-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dropzone-icon-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dropzone-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dropzone-primary-text {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.dropzone-subtext {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.btn-camera-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.btn-camera-upload:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Image Preview Card */
+.uploader-preview-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-image-container {
+  width: 100%;
+  height: 200px;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.preview-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.preview-info-row {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border-top: 1px solid var(--border-color);
+}
+
+.preview-file-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.preview-file-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.preview-file-size {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-preview-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.action-replace:hover { color: #2563eb; border-color: #bfdbfe; background: #eff6ff; }
+.action-remove:hover { color: #dc2626; border-color: #fecaca; background: #fef2f2; }
+
+/* ── Disease Result Card ── */
+.disease-result-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.result-title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.result-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.result-scanned-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+/* Severity Badges */
+.severity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sev-healthy { background: #dcfce7; color: #15803d; }
+.sev-mild { background: #fef9c3; color: #a16207; }
+.sev-moderate { background: #ffedd5; color: #c2410c; }
+.sev-severe { background: #fee2e2; color: #991b1b; }
+.sev-unknown { background: #f1f5f9; color: #475569; }
+
+/* Scanned Image Box */
+.scanned-image-container {
+  width: 100%;
+  height: 180px;
+  background: #0f172a;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scanned-leaf-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Disease Hero Banner */
+.disease-hero-box {
+  padding: 16px 20px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.hero-disease {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.hero-healthy {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.disease-name-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-sublabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.disease-name-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.confidence-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.confidence-pill strong {
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+/* Status Banners */
+.status-banner {
+  padding: 14px;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.pending-banner { background: #fef3c7; border: 1px solid #fde68a; color: #92400e; }
+.failed-banner { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+
+/* Analysis Output Sections */
+.analysis-output-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.result-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #f8fafc;
+  padding: 12px 16px;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.section-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.result-bullet-list {
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.result-ai-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 14px;
+}
+
+.ai-footer-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.btn-ask-ai-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--border-radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn-ask-ai-link:hover {
+  background: var(--color-primary-dark);
+}
+
+.empty-result-card {
+  text-align: center;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty-result-icon { font-size: 44px; line-height: 1; }
+.empty-result-title { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+.empty-result-desc { font-size: 13px; color: var(--text-secondary); max-width: 380px; }
+
+/* ── Scan History Card ── */
+.disease-history-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.history-filters-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.disease-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.disease-table th {
+  background: #f8fafc;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.disease-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.disease-name-cell {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.history-empty-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Mobile Scan Cards */
+.scan-mobile-card {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-crop-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mobile-disease-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Modal helper image wrap */
+.modal-img-wrap {
+  height: 220px;
+}
+
+/* ── Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .disease-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .disease-page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-new-scan {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .history-table-wrapper { display: none; }
+  .history-mobile-cards { display: flex; }
+
+  .disease-hero-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .confidence-pill {
+    align-items: flex-start;
+  }
+}

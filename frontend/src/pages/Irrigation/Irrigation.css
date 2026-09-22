@@ -1,0 +1,681 @@
+/* ============================================================
+   Irrigation Module Styles — Farmio
+   ============================================================ */
+
+.irrigation-page {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Page Header ── */
+.irrigation-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.irrigation-header-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.irrigation-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.irrigation-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.btn-add-schedule {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-add-schedule:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(22, 163, 74, 0.3);
+}
+
+/* ── Selector Bar (Farm & Crop) ── */
+.irrigation-selectors-bar {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: var(--card-shadow);
+}
+
+.selector-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.selector-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.selector-item label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.irrigation-select {
+  padding: 8px 30px 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%64748b' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") no-repeat right 10px center;
+  appearance: none;
+  min-width: 200px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.irrigation-select:focus {
+  border-color: var(--color-primary);
+}
+
+/* ── Summary Cards Grid ── */
+.irrigation-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.irrigation-summary-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.irrigation-summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.irrigation-summary-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.irrigation-summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.irrigation-summary-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.irrigation-summary-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ── Prominent Irrigation Status Banner ── */
+.irrigation-status-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.2s ease;
+}
+
+.decision-irrigate { border-left: 6px solid #2563eb; }
+.decision-delay { border-left: 6px solid #d97706; }
+.decision-monitor { border-left: 6px solid #059669; }
+
+.status-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.status-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.status-decision-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.decision-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.badge-irrigate { background: #dbeafe; color: #1e40af; }
+.badge-delay { background: #fef3c7; color: #92400e; }
+.badge-monitor { background: #dcfce7; color: #166534; }
+
+.priority-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.prio-urgent { background: #fee2e2; color: #991b1b; }
+.prio-high { background: #ffedd5; color: #9a3412; }
+.prio-normal { background: #f1f5f9; color: #475569; }
+.prio-low { background: #f0fdf4; color: #166534; }
+
+.farm-irr-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.weather-summary-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.status-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.reason-box, .advice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reason-label, .advice-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.reason-text, .advice-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.status-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-top: 1px dashed var(--border-color);
+  padding-top: 12px;
+}
+
+.footer-meta-item strong {
+  color: var(--text-primary);
+}
+
+/* Empty Status Card */
+.empty-status-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+}
+
+.status-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #e0f2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.status-empty-text h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.status-empty-text p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ── Irrigation Schedules Container ── */
+.irrigation-schedules-container {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.schedules-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.schedules-table-wrapper {
+  overflow-x: auto;
+}
+
+.irrigation-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.irrigation-table th {
+  background: #f8fafc;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.irrigation-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.task-title-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.task-title-text {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.task-reason-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.due-date-cell {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Pill badges */
+.status-pill {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-status-pending { background: #fef3c7; color: #b45309; }
+.badge-status-completed { background: #dcfce7; color: #15803d; }
+.badge-status-cancelled { background: #fee2e2; color: #b91c1c; }
+
+.prio-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-prio-urgent { background: #fee2e2; color: #991b1b; }
+.badge-prio-high { background: #ffedd5; color: #c2410c; }
+.badge-prio-normal { background: #f1f5f9; color: #475569; }
+.badge-prio-low { background: #f0fdf4; color: #166534; }
+
+.source-pill {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.action-buttons-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.btn-icon.action-complete:hover { background: #dcfce7; color: #16a34a; border-color: #bbf7d0; }
+.btn-icon.action-cancel:hover { background: #fffbe6; color: #d97706; border-color: #ffe58f; }
+
+/* Mobile Cards View */
+.schedules-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.irrigation-mobile-card {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.mobile-task-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mobile-task-reason {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.mobile-task-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 8px;
+}
+
+.meta-due {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+}
+
+/* Empty Schedules State */
+.irrigation-empty-schedules {
+  text-align: center;
+  padding: 36px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.empty-sched-icon { font-size: 40px; line-height: 1; }
+.empty-sched-title { font-size: 17px; font-weight: 700; color: var(--text-primary); }
+.empty-sched-desc { font-size: 13px; color: var(--text-secondary); max-width: 400px; }
+
+/* ── Water Saving & AI Section ── */
+.water-saving-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.water-saving-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.saving-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.saving-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #e0f2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.saving-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+.saving-subtitle { font-size: 12px; color: var(--text-muted); }
+
+.saving-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.advice-highlight-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--border-radius-sm);
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #166534;
+  font-weight: 500;
+}
+
+.generic-advice-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.saving-tips-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.irrigation-ai-banner {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border-radius: var(--border-radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 10px 20px rgba(2, 132, 199, 0.15);
+}
+
+.ai-banner-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.ai-banner-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ai-banner-text h3 { font-size: 18px; font-weight: 700; color: #ffffff; }
+.ai-banner-text p { font-size: 13px; color: #e0f2fe; margin-top: 4px; line-height: 1.5; }
+
+.btn-ask-ai-irrigation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #0369a1;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btn-ask-ai-irrigation:hover {
+  background: #f0f9ff;
+}
+
+/* ── Responsive Breakpoints ── */
+@media (max-width: 1024px) {
+  .irrigation-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .water-saving-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .irrigation-page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add-schedule {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .irrigation-selectors-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .selector-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .irrigation-select {
+    width: 100%;
+  }
+
+  .schedules-table-wrapper { display: none; }
+  .schedules-mobile-cards { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .irrigation-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

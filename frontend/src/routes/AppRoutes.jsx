@@ -13,6 +13,7 @@ import Irrigation from "../pages/Irrigation";
 import Tasks from "../pages/Tasks";
 import Disease from "../pages/Disease";
 import Schemes from "../pages/Schemes";
+import Finance from "../pages/Finance";
 import AI from "../pages/AI";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -93,6 +94,7 @@ const AppRoutes = () => {
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/disease" element={<Disease />} />
           <Route path="/schemes" element={<Schemes />} />
+          <Route path="/finance" element={<Finance />} />
           <Route path="/ai" element={<AI />} />
         </Route>
       </Route>

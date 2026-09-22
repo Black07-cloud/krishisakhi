@@ -9,6 +9,7 @@ import {
   ClipboardList,
   ScanLine,
   BookOpen,
+  Wallet,
   Bot,
   Leaf,
   LogOut,
@@ -39,6 +40,7 @@ const navItems = [
       { to: "/tasks", icon: ClipboardList, label: "Farm Tasks" },
       { to: "/disease", icon: ScanLine, label: "Disease Detection" },
       { to: "/schemes", icon: BookOpen, label: "Govt. Schemes" },
+      { to: "/finance", icon: Wallet, label: "Farm Finance" },
     ],
   },
 ];
