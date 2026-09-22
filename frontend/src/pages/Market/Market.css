@@ -1,0 +1,290 @@
+/* ==========================================================================
+   MARKET INTELLIGENCE & MARKETPLACE STYLES
+   ========================================================================== */
+
+.market-page {
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* Data Source Indicator Banner */
+.market-data-indicator-banner {
+  border-radius: 12px;
+  padding: 0.875rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+}
+
+.market-data-indicator-banner.demo-banner {
+  background: #fefce8;
+  border: 1px solid #fef08a;
+  color: #854d0e;
+}
+
+.market-data-indicator-banner.live-banner {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex: 1;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.775rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.demo-banner .badge-pill {
+  background: #fef08a;
+  color: #713f12;
+}
+
+.live-banner .badge-pill {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.banner-explanation {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.sync-timestamp {
+  font-size: 0.775rem;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+/* Header Buttons Group */
+.market-header-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.secondary-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.secondary-header-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Trend & Comparison Section Grid */
+.market-analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.market-trend-card,
+.market-comparison-card {
+  margin-bottom: 0;
+}
+
+/* Timeframe toggle buttons */
+.timeframe-toggle {
+  display: flex;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 8px;
+}
+
+.time-btn {
+  border: none;
+  background: transparent;
+  padding: 0.25rem 0.625rem;
+  border-radius: 6px;
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.time-btn.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.bar-hover-val {
+  font-size: 0.7rem;
+  color: #16a34a;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+/* Listing Snippet & Market Reference Cards */
+.market-ref-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.market-ref-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.market-ref-header h4 {
+  font-size: 0.975rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.market-ref-content {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.ref-price-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.ref-label {
+  font-size: 0.775rem;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ref-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+.listing-summary-snippet {
+  display: flex;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+}
+
+.snippet-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.snippet-val {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Listing card specific */
+.listing-card-body {
+  margin: 1rem 0;
+}
+
+.listing-price-box {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.price-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.price-value {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.unit-sub {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.listing-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.info-label {
+  color: #64748b;
+}
+
+.info-val {
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Responsive Media Query */
+@media (max-width: 768px) {
+  .market-analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-header-actions {
+    width: 100%;
+  }
+
+  .secondary-header-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}

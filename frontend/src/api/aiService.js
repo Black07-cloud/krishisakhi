@@ -1,33 +1,16 @@
 import apiClient from "./axios";
 
-/**
- * AI Service — placeholder for future /api/ai endpoints.
- * Do NOT call these during initial UI render; invoke only on user action.
- */
+export const sendChatMessage = (payload) =>
+  apiClient.post("/ai/chat", payload);
 
-/**
- * Send a message to the AI and get a response.
- * @param {string} message - The user's message text
- * @param {string|null} conversationId - Existing conversation ID (or null to start new)
- */
-export const sendAIMessage = (message, conversationId = null) =>
-  apiClient.post("/ai/message", { message, conversationId });
+export const getAIConversations = () =>
+  apiClient.get("/ai/conversations");
 
-/**
- * Retrieve an existing conversation history.
- * @param {string} conversationId
- */
-export const getAIConversation = (conversationId) =>
-  apiClient.get(`/ai/conversation/${conversationId}`);
+export const getAIConversation = (id) =>
+  apiClient.get(`/ai/conversations/${id}`);
 
-/**
- * Clear / reset a conversation.
- * @param {string} conversationId
- */
-export const clearAIConversation = (conversationId) =>
-  apiClient.delete(`/ai/conversation/${conversationId}`);
+export const createAIConversation = (payload = {}) =>
+  apiClient.post("/ai/conversations", payload);
 
-/**
- * Get all conversations for the current user.
- */
-export const getAIConversations = () => apiClient.get("/ai/conversations");
+export const deleteAIConversation = (id) =>
+  apiClient.delete(`/ai/conversations/${id}`);

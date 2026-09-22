@@ -1,400 +1,526 @@
 import mongoose from "mongoose";
-
 import MarketPrice from "../models/MarketPrice.js";
-
-import syncGovernmentMarketPrices from "../services/governmentMarketService.js";
-
 import {
-  getLatestMarketPrices,
-  getMarketPriceById,
-  getFarmMarketIntelligence,
-} from "../services/marketService.js";
+  syncDailyMarketPrices,
+  calculatePriceChangesForRecords,
+} from "../services/marketDataService.js";
+import {
+  createListingService,
+  getPublicListingsService,
+  getMyListingsService,
+  getListingByIdService,
+  updateListingService,
+  updateListingStatusService,
+  deleteListingService,
+  createEnquiryService,
+  getMyEnquiriesService,
+  getSellerEnquiriesService,
+  updateEnquiryStatusService,
+} from "../services/listingService.js";
 
-/* -------------------------------------------------------
-   Validation
-------------------------------------------------------- */
+/* =======================================================
+   MARKET INTELLIGENCE CONTROLLERS
+======================================================= */
 
-const validateManualPrice = (body) => {
-  const {
-    crop,
-    market,
-    minPrice,
-    maxPrice,
-    modalPrice,
-  } = body;
+/*
+   GET /api/market/today
+   Fetch today's market prices with calculated price change & demo/live indicators
+*/
+export const getTodayMarketPrices = async (req, res) => {
+  try {
+    // Ensure today's daily prices exist
+    await syncDailyMarketPrices(false);
 
-  if (
-    !crop ||
-    typeof crop !== "string"
-  ) {
-    return "Crop is required";
+    const { crop, state, district, market, limit = 50 } = req.query;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const filter = { isActive: true, priceDate: { $gte: today } };
+
+    if (crop) filter.cropName = new RegExp(`^${crop}$`, "i");
+    if (state) filter.state = new RegExp(`^${state}$`, "i");
+    if (district) filter.district = new RegExp(`^${district}$`, "i");
+    if (market) filter.market = new RegExp(`^${market}$`, "i");
+
+    const rawPrices = await MarketPrice.find(filter)
+      .sort({ cropName: 1, modalPrice: -1 })
+      .limit(Number(limit) || 50);
+
+    const enriched = await calculatePriceChangesForRecords(rawPrices);
+
+    const lastSynced = rawPrices[0]?.lastSyncedAt || new Date();
+    const dataType = rawPrices[0]?.dataType || "demo";
+
+    return res.status(200).json({
+      success: true,
+      count: enriched.length,
+      dataType,
+      lastSyncedAt: lastSynced,
+      data: enriched,
+    });
+  } catch (error) {
+    console.error("Get Today Market Prices Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch today's market prices",
+    });
   }
-
-  if (
-    !market ||
-    typeof market !== "string"
-  ) {
-    return "Market is required";
-  }
-
-  const min = Number(minPrice);
-  const max = Number(maxPrice);
-  const modal = Number(modalPrice);
-
-  if (
-    !Number.isFinite(min) ||
-    min < 0
-  ) {
-    return "minPrice must be a valid non-negative number";
-  }
-
-  if (
-    !Number.isFinite(max) ||
-    max < 0
-  ) {
-    return "maxPrice must be a valid non-negative number";
-  }
-
-  if (
-    !Number.isFinite(modal) ||
-    modal < 0
-  ) {
-    return "modalPrice must be a valid non-negative number";
-  }
-
-  if (min > max) {
-    return "minPrice cannot be greater than maxPrice";
-  }
-
-  if (
-    modal < min ||
-    modal > max
-  ) {
-    return "modalPrice must be between minPrice and maxPrice";
-  }
-
-  return null;
 };
 
-/* -------------------------------------------------------
+/*
    GET /api/market
-------------------------------------------------------- */
+   Query historical / latest market prices
+*/
+export const getMarketPrices = async (req, res) => {
+  try {
+    const { crop, cropName, state, district, market, limit = 20 } = req.query;
 
-export const getMarketPrices =
-  async (req, res) => {
-    try {
-      const {
-        crop,
-        state,
-        district,
-        market,
-        limit,
-        sync,
-      } = req.query;
+    const filter = { isActive: true };
+    const targetCrop = cropName || crop;
 
-      let syncResult = null;
+    if (targetCrop) filter.cropName = new RegExp(`^${targetCrop}$`, "i");
+    if (state) filter.state = new RegExp(`^${state}$`, "i");
+    if (district) filter.district = new RegExp(`^${district}$`, "i");
+    if (market) filter.market = new RegExp(`^${market}$`, "i");
 
-      if (sync === "true") {
-        syncResult =
-          await syncGovernmentMarketPrices({
-            crop,
-            state,
-            district,
-            market,
-            limit:
-              limit || 100,
-          });
-      }
+    const rawPrices = await MarketPrice.find(filter)
+      .sort({ priceDate: -1, createdAt: -1 })
+      .limit(Math.min(Number(limit) || 20, 100));
 
-      let prices =
-        await getLatestMarketPrices({
-          crop,
-          state,
-          district,
-          market,
-          limit,
-        });
+    const enriched = await calculatePriceChangesForRecords(rawPrices);
 
-      /*
-       * Auto sync only if cache is empty.
-       */
+    return res.status(200).json({
+      success: true,
+      count: enriched.length,
+      data: enriched,
+    });
+  } catch (error) {
+    console.error("Get Market Prices Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch market prices",
+    });
+  }
+};
 
-      if (
-        prices.length === 0 &&
-        sync !== "false"
-      ) {
-        syncResult =
-          await syncGovernmentMarketPrices({
-            crop,
-            state,
-            district,
-            market,
-            limit:
-              limit || 100,
-          });
+/*
+   GET /api/market/trend
+   Historical price trend over 7 or 30 days
+*/
+export const getMarketTrend = async (req, res) => {
+  try {
+    const { crop, cropName, market, days = 7 } = req.query;
 
-        prices =
-          await getLatestMarketPrices({
-            crop,
-            state,
-            district,
-            market,
-            limit,
-          });
-      }
+    const targetCrop = cropName || crop || "Tomato";
+    const daysNum = parseInt(days, 10) || 7;
 
-      return res.status(200).json({
-        success: true,
-        count: prices.length,
-        synced:
-          syncResult !== null,
-        sync: syncResult,
-        data: prices,
-      });
-    } catch (error) {
-      console.error(
-        "Get Market Prices Error:",
-        error
-      );
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - daysNum);
 
-      return res.status(500).json({
-        success: false,
-        message:
-          "Failed to fetch market prices",
-        error:
-          process.env.NODE_ENV ===
-          "development"
-            ? error.message
-            : undefined,
-      });
+    const filter = {
+      isActive: true,
+      cropName: new RegExp(`^${targetCrop}$`, "i"),
+      priceDate: { $gte: cutoffDate },
+    };
+
+    if (market) {
+      filter.market = new RegExp(`^${market}$`, "i");
     }
-  };
 
-/* -------------------------------------------------------
-   GET /api/market/:id
-------------------------------------------------------- */
+    const records = await MarketPrice.find(filter)
+      .sort({ priceDate: 1 })
+      .select("cropName market priceDate modalPrice minPrice maxPrice unit")
+      .lean();
 
-export const getMarketPrice =
-  async (req, res) => {
-    try {
-      const { id } = req.params;
+    return res.status(200).json({
+      success: true,
+      crop: targetCrop,
+      days: daysNum,
+      count: records.length,
+      data: records,
+    });
+  } catch (error) {
+    console.error("Get Market Trend Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch market trend",
+    });
+  }
+};
 
-      if (
-        !mongoose.Types.ObjectId.isValid(id)
-      ) {
-        return res.status(400).json({
-          success: false,
-          message:
-            "Invalid market price ID",
-        });
-      }
+/*
+   GET /api/market/compare
+   Compare crop modal prices across different markets/mandis
+*/
+export const getMarketComparison = async (req, res) => {
+  try {
+    const { crop, cropName, state, district } = req.query;
+    const targetCrop = cropName || crop || "Tomato";
 
-      const price =
-        await getMarketPriceById(id);
+    const filter = {
+      isActive: true,
+      cropName: new RegExp(`^${targetCrop}$`, "i"),
+    };
 
-      if (!price) {
-        return res.status(404).json({
-          success: false,
-          message:
-            "Market price not found",
-        });
-      }
+    if (state) filter.state = new RegExp(`^${state}$`, "i");
+    if (district) filter.district = new RegExp(`^${district}$`, "i");
 
-      return res.status(200).json({
-        success: true,
-        data: price,
-      });
-    } catch (error) {
-      console.error(
-        "Get Market Price Error:",
-        error
-      );
+    const rawPrices = await MarketPrice.find(filter)
+      .sort({ priceDate: -1, modalPrice: -1 })
+      .limit(15);
 
-      return res.status(500).json({
-        success: false,
-        message:
-          "Failed to fetch market price",
-      });
-    }
-  };
+    const enriched = await calculatePriceChangesForRecords(rawPrices);
 
-/* -------------------------------------------------------
-   POST /api/market
-------------------------------------------------------- */
+    return res.status(200).json({
+      success: true,
+      crop: targetCrop,
+      count: enriched.length,
+      data: enriched,
+    });
+  } catch (error) {
+    console.error("Get Market Comparison Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch market comparison",
+    });
+  }
+};
 
-export const createManualMarketPrice =
-  async (req, res) => {
-    try {
-      const validationError =
-        validateManualPrice(req.body);
+/*
+   GET /api/market/summary
+   Market overview statistics
+*/
+export const getMarketSummary = async (req, res) => {
+  try {
+    await syncDailyMarketPrices(false);
 
-      if (validationError) {
-        return res.status(400).json({
-          success: false,
-          message: validationError,
-        });
-      }
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-      const price =
-        await MarketPrice.create({
-          crop: req.body.crop.trim(),
+    const todayCount = await MarketPrice.countDocuments({
+      isActive: true,
+      priceDate: { $gte: today },
+    });
 
-          variety:
-            req.body.variety?.trim() ||
-            null,
+    const availableCrops = await MarketPrice.distinct("cropName", { isActive: true });
+    const availableMarkets = await MarketPrice.distinct("market", { isActive: true });
+    const latestRecord = await MarketPrice.findOne({ isActive: true }).sort({ lastSyncedAt: -1 });
 
-          market:
-            req.body.market.trim(),
+    return res.status(200).json({
+      success: true,
+      data: {
+        todayCount,
+        availableCropsCount: availableCrops.length,
+        availableMarketsCount: availableMarkets.length,
+        availableCrops,
+        availableMarkets,
+        lastUpdated: latestRecord?.lastSyncedAt || new Date(),
+        dataType: latestRecord?.dataType || "demo",
+      },
+    });
+  } catch (error) {
+    console.error("Get Market Summary Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch market summary",
+    });
+  }
+};
 
-          district:
-            req.body.district?.trim() ||
-            null,
-
-          state:
-            req.body.state?.trim() ||
-            null,
-
-          minPrice:
-            Number(req.body.minPrice),
-
-          maxPrice:
-            Number(req.body.maxPrice),
-
-          modalPrice:
-            Number(req.body.modalPrice),
-
-          unit:
-            req.body.unit?.trim() ||
-            "quintal",
-
-          priceDate:
-            req.body.priceDate
-              ? new Date(
-                  req.body.priceDate
-                )
-              : new Date(),
-
-          source: "manual",
-
-          sourceName: "FARMIO",
-
-          sourceRecordId: null,
-
-          isActive: true,
-        });
-
-      return res.status(201).json({
-        success: true,
-        message:
-          "Market price created successfully",
-        data: price,
-      });
-    } catch (error) {
-      console.error(
-        "Create Manual Market Price Error:",
-        error
-      );
-
-      return res.status(500).json({
-        success: false,
-        message:
-          "Failed to create market price",
-      });
-    }
-  };
-
-/* -------------------------------------------------------
+/*
    POST /api/market/sync
-------------------------------------------------------- */
+*/
+export const syncMarketPrices = async (req, res) => {
+  try {
+    const result = await syncDailyMarketPrices(true);
+    return res.status(200).json({
+      success: true,
+      message: "Market prices synced successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.error("Sync Market Prices Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to sync market prices",
+    });
+  }
+};
 
-export const syncMarketPrices =
-  async (req, res) => {
-    try {
-      const result =
-        await syncGovernmentMarketPrices({
-          crop: req.body?.crop,
-          state: req.body?.state,
-          district: req.body?.district,
-          market: req.body?.market,
-          limit:
-            req.body?.limit || 100,
-        });
-
-      return res.status(200).json({
-        success: true,
-        message:
-          "Government market prices synchronized successfully",
-        data: result,
-      });
-    } catch (error) {
-      console.error(
-        "Market Sync Error:",
-        error
-      );
-
-      return res.status(500).json({
-        success: false,
-        message:
-          "Failed to synchronize government market prices",
-        error:
-          process.env.NODE_ENV ===
-          "development"
-            ? error.message
-            : undefined,
-      });
+/*
+   GET /api/market/:id
+*/
+export const getMarketPrice = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ success: false, message: "Invalid ID" });
     }
-  };
 
-/* -------------------------------------------------------
+    const price = await MarketPrice.findById(id).lean();
+    if (!price) {
+      return res.status(404).json({ success: false, message: "Market price not found" });
+    }
+
+    return res.status(200).json({ success: true, data: price });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Failed to fetch price" });
+  }
+};
+
+/*
+   POST /api/market
+   Manual price creation for backward compatibility
+*/
+export const createManualMarketPrice = async (req, res) => {
+  try {
+    const price = await MarketPrice.create({
+      crop: req.body.crop,
+      cropName: req.body.crop,
+      variety: req.body.variety || "Standard",
+      market: req.body.market,
+      district: req.body.district,
+      state: req.body.state,
+      minPrice: Number(req.body.minPrice),
+      maxPrice: Number(req.body.maxPrice),
+      modalPrice: Number(req.body.modalPrice),
+      unit: req.body.unit || "quintal",
+      priceDate: req.body.priceDate ? new Date(req.body.priceDate) : new Date(),
+      source: "manual",
+      dataType: "demo",
+    });
+
+    return res.status(201).json({ success: true, data: price });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Failed to create manual market price" });
+  }
+};
+
+/*
    GET /api/market/farm/:farmId/intelligence
-------------------------------------------------------- */
+   Farm market intelligence for backward compatibility
+*/
+export const getFarmMarketIntelligenceController = async (req, res) => {
+  try {
+    const { farmId } = req.params;
+    const latest = await MarketPrice.find({ isActive: true }).sort({ priceDate: -1 }).limit(10);
+    return res.status(200).json({
+      success: true,
+      data: {
+        farm: { id: farmId },
+        prices: latest,
+        trend: { direction: "stable", percentage: 0 },
+        recommendation: "Compare nearby markets before deciding where to sell.",
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Failed to fetch farm market intelligence" });
+  }
+};
 
-export const getFarmMarketIntelligenceController =
-  async (req, res) => {
-    try {
-      const { farmId } =
-        req.params;
+/* =======================================================
+   CROP SELLING / MARKETPLACE CONTROLLERS
+======================================================= */
 
-      if (
-        !mongoose.Types.ObjectId.isValid(
-          farmId
-        )
-      ) {
-        return res.status(400).json({
-          success: false,
-          message:
-            "Invalid farm ID",
-        });
-      }
+export const createListing = async (req, res) => {
+  try {
+    const sellerId = req.user.userId;
+    const { farmId, farm, cropName, title, quantity, expectedPrice } = req.body;
 
-      const intelligence =
-        await getFarmMarketIntelligence(
-          farmId,
-          req.user.userId
-        );
-
-      if (!intelligence) {
-        return res.status(404).json({
-          success: false,
-          message:
-            "Farm not found",
-        });
-      }
-
-      return res.status(200).json({
-        success: true,
-        data: intelligence,
-      });
-    } catch (error) {
-      console.error(
-        "Farm Market Intelligence Error:",
-        error
-      );
-
-      return res.status(500).json({
-        success: false,
-        message:
-          "Failed to generate market intelligence",
-      });
+    if (!farmId && !farm) {
+      return res.status(400).json({ success: false, message: "Farm is required" });
     }
-  };
+
+    if (!cropName || !title) {
+      return res.status(400).json({ success: false, message: "Crop name and title are required" });
+    }
+
+    if (!quantity || Number(quantity) <= 0) {
+      return res.status(400).json({ success: false, message: "Quantity must be greater than 0" });
+    }
+
+    if (!expectedPrice || Number(expectedPrice) <= 0) {
+      return res.status(400).json({ success: false, message: "Expected price must be greater than 0" });
+    }
+
+    const listing = await createListingService(sellerId, req.body);
+
+    return res.status(201).json({
+      success: true,
+      message: "Your crop listing has been published.",
+      data: listing,
+    });
+  } catch (error) {
+    console.error("Create Listing Error:", error);
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Failed to create crop listing",
+    });
+  }
+};
+
+export const getPublicListings = async (req, res) => {
+  try {
+    const result = await getPublicListingsService(req.query);
+    return res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.error("Get Public Listings Error:", error);
+    return res.status(500).json({ success: false, message: "Failed to fetch crop listings" });
+  }
+};
+
+export const getMyListings = async (req, res) => {
+  try {
+    const sellerId = req.user.userId;
+    const result = await getMyListingsService(sellerId, req.query);
+    return res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.error("Get My Listings Error:", error);
+    return res.status(500).json({ success: false, message: "Failed to fetch your listings" });
+  }
+};
+
+export const getListingById = async (req, res) => {
+  try {
+    const requesterId = req.user?.userId;
+    const listing = await getListingByIdService(req.params.id, requesterId);
+    return res.status(200).json({ success: true, data: listing });
+  } catch (error) {
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Failed to fetch listing",
+    });
+  }
+};
+
+export const updateListing = async (req, res) => {
+  try {
+    const sellerId = req.user.userId;
+    const updated = await updateListingService(sellerId, req.params.id, req.body);
+    return res.status(200).json({
+      success: true,
+      message: "Listing updated successfully",
+      data: updated,
+    });
+  } catch (error) {
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Failed to update listing",
+    });
+  }
+};
+
+export const updateListingStatus = async (req, res) => {
+  try {
+    const sellerId = req.user.userId;
+    const { status } = req.body;
+    const updated = await updateListingStatusService(sellerId, req.params.id, status);
+    return res.status(200).json({
+      success: true,
+      message: `Listing status updated to ${status}`,
+      data: updated,
+    });
+  } catch (error) {
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Failed to update status",
+    });
+  }
+};
+
+export const deleteListing = async (req, res) => {
+  try {
+    const sellerId = req.user.userId;
+    await deleteListingService(sellerId, req.params.id);
+    return res.status(200).json({
+      success: true,
+      message: "Listing deleted successfully",
+    });
+  } catch (error) {
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Failed to delete listing",
+    });
+  }
+};
+
+export const generateListingDescription = async (req, res) => {
+  try {
+    const { cropName, quantity, quantityUnit, expectedPrice, priceUnit, location } = req.body;
+    const desc = `Fresh harvested ${cropName || "produce"} (${quantity || ""} ${quantityUnit || "quintal"}) available for immediate purchase. Offered at ₹${expectedPrice || ""}/${priceUnit || "quintal"}. Located in ${location?.district || location?.state || "local market region"}. Well maintained crop quality.`;
+    return res.status(200).json({
+      success: true,
+      description: desc,
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Failed to generate description" });
+  }
+};
+
+/* =======================================================
+   ENQUIRIES CONTROLLERS
+======================================================= */
+
+export const createEnquiry = async (req, res) => {
+  try {
+    const buyerId = req.user.userId;
+    const { listingId } = req.params;
+    const { message } = req.body;
+
+    const enquiry = await createEnquiryService(buyerId, listingId, message);
+
+    return res.status(201).json({
+      success: true,
+      message: "Enquiry sent successfully to the seller.",
+      data: enquiry,
+    });
+  } catch (error) {
+    console.error("Create Enquiry Error:", error);
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Failed to send enquiry",
+    });
+  }
+};
+
+export const getMyEnquiries = async (req, res) => {
+  try {
+    const buyerId = req.user.userId;
+    const enquiries = await getMyEnquiriesService(buyerId);
+    return res.status(200).json({ success: true, data: enquiries });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Failed to fetch enquiries" });
+  }
+};
+
+export const getSellerEnquiries = async (req, res) => {
+  try {
+    const sellerId = req.user.userId;
+    const enquiries = await getSellerEnquiriesService(sellerId);
+    return res.status(200).json({ success: true, data: enquiries });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Failed to fetch seller enquiries" });
+  }
+};
+
+export const updateEnquiryStatus = async (req, res) => {
+  try {
+    const sellerId = req.user.userId;
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const updated = await updateEnquiryStatusService(sellerId, id, status);
+
+    return res.status(200).json({
+      success: true,
+      message: `Enquiry status updated to ${status}`,
+      data: updated,
+    });
+  } catch (error) {
+    return res.status(error.status || 500).json({
+      success: false,
+      message: error.message || "Failed to update enquiry status",
+    });
+  }
+};

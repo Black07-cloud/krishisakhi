@@ -14,6 +14,11 @@ import Tasks from "../pages/Tasks";
 import Disease from "../pages/Disease";
 import Schemes from "../pages/Schemes";
 import Finance from "../pages/Finance";
+import Market from "../pages/Market";
+import MarketSell from "../pages/MarketSell";
+import MarketListings from "../pages/MarketListings";
+import MarketMyListings from "../pages/MarketMyListings";
+import MarketEnquiries from "../pages/MarketEnquiries";
 import AI from "../pages/AI";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -95,6 +100,11 @@ const AppRoutes = () => {
           <Route path="/disease" element={<Disease />} />
           <Route path="/schemes" element={<Schemes />} />
           <Route path="/finance" element={<Finance />} />
+          <Route path="/market" element={<Market />} />
+          <Route path="/market/sell" element={<MarketSell />} />
+          <Route path="/market/buy" element={<MarketListings />} />
+          <Route path="/market/my-listings" element={<MarketMyListings />} />
+          <Route path="/market/enquiries" element={<MarketEnquiries />} />
           <Route path="/ai" element={<AI />} />
         </Route>
       </Route>

@@ -1,212 +1,506 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   Bot,
   Send,
+  Plus,
+  Trash2,
+  Copy,
+  Check,
+  RefreshCw,
+  Sparkles,
   Sprout,
   Droplets,
   FlaskConical,
-  ScanLine,
   CloudSun,
-  BookOpen,
+  ScanLine,
+  Store,
+  Wallet,
+  Landmark,
+  MessageSquare,
+  Sidebar as SidebarIcon,
+  Info,
+  ChevronRight,
+  Database,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
-import { sendAIMessage } from "../../api/aiService";
+import {
+  sendChatMessage,
+  getAIConversations,
+  getAIConversation,
+  createAIConversation,
+  deleteAIConversation,
+} from "../../api/aiService";
 import "./AI.css";
 
-// ── Quick prompt suggestions ─────────────────────────────────────────────────
-const QUICK_PROMPTS = [
-  { icon: Sprout,       label: "Crop Advice",         text: "What crops should I plant this season?" },
-  { icon: Droplets,     label: "Irrigation",          text: "How often should I irrigate my wheat crop?" },
-  { icon: FlaskConical, label: "Soil Health",         text: "How can I improve my soil pH levels?" },
-  { icon: ScanLine,     label: "Disease",             text: "My crop leaves are turning yellow. What could it be?" },
-  { icon: CloudSun,     label: "Weather",             text: "How does the upcoming rainfall affect my crops?" },
-  { icon: BookOpen,     label: "Govt. Schemes",       text: "What government schemes are available for small farmers?" },
+const QUICK_SUGGESTIONS = [
+  {
+    topic: "Irrigation",
+    icon: Droplets,
+    prompt: "When should I irrigate my tomato crop?",
+  },
+  {
+    topic: "Market",
+    icon: Store,
+    prompt: "What is today's tomato market price?",
+  },
+  {
+    topic: "Finance",
+    icon: Wallet,
+    prompt: "Show my farm finance expenses",
+  },
+  {
+    topic: "Government Schemes",
+    icon: Landmark,
+    prompt: "Which government schemes are available?",
+  },
+  {
+    topic: "Soil Health",
+    icon: FlaskConical,
+    prompt: "How is my soil health status?",
+  },
+  {
+    topic: "Disease",
+    icon: ScanLine,
+    prompt: "Check my latest disease scan",
+  },
 ];
 
-// ── Message component ────────────────────────────────────────────────────────
-const Message = ({ role, content, initials }) => (
-  <div className={`ai-message ${role}`}>
-    <div className={`ai-message-avatar ${role === "bot" ? "bot" : "user-avatar"}`}>
-      {role === "bot" ? <Bot size={14} color="#4ade80" /> : initials}
-    </div>
-    <div className="ai-bubble">{content}</div>
-  </div>
-);
-
-// ── Main AI Page ─────────────────────────────────────────────────────────────
 const AI = () => {
   const { user } = useAuth();
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [sending, setSending] = useState(false);
-  const messagesEndRef = useRef(null);
-  const textareaRef = useRef(null);
-  const conversationIdRef = useRef(null);
-
   const initials = user?.name ? user.name.slice(0, 2).toUpperCase() : "FA";
 
-  // Scroll to bottom on new messages
+  // Conversations & Chat State
+  const [conversations, setConversations] = useState([]);
+  const [currentConversationId, setCurrentConversationId] = useState(null);
+  const [messages, setMessages] = useState([]);
+
+  const [inputMessage, setInputMessage] = useState("");
+  const [sending, setSending] = useState(false);
+  const [traceStep, setTraceStep] = useState(""); // Step trace animation
+
+  // Context drawer & Sidebar state
+  const [showHistorySidebar, setShowHistorySidebar] = useState(false);
+  const [showContextDrawer, setShowContextDrawer] = useState(true);
+  const [copiedIndex, setCopiedIndex] = useState(null);
+
+  const messagesEndRef = useRef(null);
+  const textareaRef = useRef(null);
+
+  // Auto scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, traceStep]);
 
-  // Auto-resize textarea
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-    const ta = textareaRef.current;
-    if (ta) {
-      ta.style.height = "auto";
-      ta.style.height = `${Math.min(ta.scrollHeight, 140)}px`;
+  // Load conversation list on mount
+  const loadConversationsList = useCallback(async () => {
+    try {
+      const res = await getAIConversations();
+      if (res && res.success) {
+        setConversations(res.data || []);
+      }
+    } catch (err) {
+      console.error("Failed to load AI conversations:", err);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadConversationsList();
+  }, [loadConversationsList]);
+
+  // Load single conversation details
+  const handleSelectConversation = async (convId) => {
+    setCurrentConversationId(convId);
+    setLoadingMessages(true);
+    try {
+      const res = await getAIConversation(convId);
+      if (res && res.success) {
+        const historyMsgs = (res.data.messages || []).map((m) => ({
+          role: m.role,
+          content: m.content,
+          metadata: m.metadata,
+        }));
+        setMessages(historyMsgs);
+      }
+    } catch (err) {
+      console.error("Failed to load conversation messages:", err);
+    } finally {
+      setLoadingMessages(false);
     }
   };
 
-  const sendMessage = useCallback(
-    async (text) => {
-      const trimmed = text.trim();
-      if (!trimmed || sending) return;
+  const [loadingMessages, setLoadingMessages] = useState(false);
 
-      // Add user message immediately
-      setMessages((prev) => [...prev, { role: "user", content: trimmed }]);
-      setInput("");
-      if (textareaRef.current) textareaRef.current.style.height = "auto";
-      setSending(true);
+  // Start new chat session
+  const handleNewChat = async () => {
+    setCurrentConversationId(null);
+    setMessages([]);
+    setInputMessage("");
+  };
 
-      try {
-        const res = await sendAIMessage(trimmed, conversationIdRef.current);
-        // Store conversation ID for follow-up messages
-        if (res?.conversationId) {
-          conversationIdRef.current = res.conversationId;
-        }
-        setMessages((prev) => [
-          ...prev,
-          { role: "bot", content: res?.reply || res?.message || "Response received." },
-        ]);
-      } catch (err) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "bot",
-            content:
-              "The AI service is not connected yet. This UI is ready — wire up the backend /api/ai endpoints to enable responses.",
-          },
-        ]);
-      } finally {
-        setSending(false);
+  // Delete conversation
+  const handleDeleteChat = async (convId, e) => {
+    e.stopPropagation();
+    try {
+      await deleteAIConversation(convId);
+      if (currentConversationId === convId) {
+        handleNewChat();
       }
-    },
-    [sending]
-  );
+      loadConversationsList();
+    } catch (err) {
+      console.error("Failed to delete conversation:", err);
+    }
+  };
+
+  // Send message to AI Assistant
+  const handleSendMessage = async (textToSend = null) => {
+    const text = (textToSend || inputMessage).trim();
+    if (!text || sending) return;
+
+    // Add user message to UI
+    const newUserMsg = { role: "user", content: text };
+    setMessages((prev) => [...prev, newUserMsg]);
+    setInputMessage("");
+    if (textareaRef.current) textareaRef.current.style.height = "auto";
+    setSending(true);
+
+    // Simulate Agent Activity Trace Steps
+    setTraceStep("Understanding your query & detecting intent...");
+    await new Promise((r) => setTimeout(r, 400));
+    setTraceStep("Gathering relevant farm, crop & weather database records...");
+    await new Promise((r) => setTimeout(r, 400));
+    setTraceStep("Running Farmio Reasoning Engine...");
+
+    try {
+      const res = await sendChatMessage({
+        conversationId: currentConversationId,
+        message: text,
+      });
+
+      if (res && res.success && res.data) {
+        const { conversationId, message: assistantMsg, metadata } = res.data;
+
+        if (!currentConversationId && conversationId) {
+          setCurrentConversationId(conversationId);
+          loadConversationsList();
+        }
+
+        const newAssistantMsg = {
+          role: "assistant",
+          content: assistantMsg.content,
+          metadata: res.data,
+        };
+
+        setMessages((prev) => [...prev, newAssistantMsg]);
+      }
+    } catch (err) {
+      console.error("AI chat error:", err);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            "I'm having trouble processing your request right now. Please verify your connection and try again.",
+        },
+      ]);
+    } finally {
+      setTraceStep("");
+      setSending(false);
+    }
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      sendMessage(input);
+      handleSendMessage();
     }
   };
 
-  const handleQuickPrompt = (text) => {
-    sendMessage(text);
+  const handleCopyText = (text, idx) => {
+    navigator.clipboard.writeText(text);
+    setCopiedIndex(idx);
+    setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  const showWelcome = messages.length === 0;
+  const activeMetadata = messages
+    .slice()
+    .reverse()
+    .find((m) => m.metadata)?.metadata;
 
   return (
-    <div className="ai-page">
-      {/* Header */}
-      <div className="ai-chat-header">
-        <div className="ai-chat-header-icon">
-          <Bot size={22} color="#4ade80" />
-        </div>
-        <div className="ai-chat-header-info">
-          <h3>Farmio AI Assistant</h3>
-          <p>
-            <span className="ai-status-dot" aria-hidden="true" />
-            Powered by Gemini · Agriculture specialist
-          </p>
-        </div>
-      </div>
-
-      {/* Messages */}
-      <div className="ai-messages" id="ai-messages-area" aria-live="polite">
-        {showWelcome ? (
-          <div className="ai-welcome">
-            <div className="ai-welcome-icon">
-              <Bot size={30} color="#4ade80" />
-            </div>
-            <h3>Hello, {user?.name || "Farmer"}! 🌱</h3>
-            <p>
-              I&apos;m your AI farming assistant. Ask me anything about crops, soil,
-              irrigation, weather, disease, or government schemes.
-            </p>
-            <div className="ai-quick-prompts" id="ai-quick-prompts">
-              {QUICK_PROMPTS.map(({ icon: Icon, label, text }) => (
-                <button
-                  key={label}
-                  className="ai-quick-btn"
-                  onClick={() => handleQuickPrompt(text)}
-                  id={`ai-quick-${label.toLowerCase().replace(/\s+/g, "-")}`}
-                  disabled={sending}
-                >
-                  <Icon size={13} />
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <>
-            {messages.map((msg, i) => (
-              <Message
-                key={i}
-                role={msg.role}
-                content={msg.content}
-                initials={initials}
-              />
-            ))}
-            {sending && (
-              <div className="ai-message bot">
-                <div className="ai-message-avatar bot">
-                  <Bot size={14} color="#4ade80" />
-                </div>
-                <div className="ai-bubble" style={{ color: "var(--text-muted)", fontStyle: "italic" }}>
-                  Thinking…
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </>
-        )}
-      </div>
-
-      {/* Input */}
-      <div className="ai-input-area">
-        <div className="ai-input-row">
-          <textarea
-            ref={textareaRef}
-            className="ai-input"
-            id="ai-message-input"
-            placeholder="Ask about crops, soil, weather, diseases…"
-            value={input}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            rows={1}
-            aria-label="Message input"
-            disabled={sending}
-          />
-          <button
-            className="ai-send-btn"
-            id="ai-send-btn"
-            onClick={() => sendMessage(input)}
-            disabled={!input.trim() || sending}
-            aria-label="Send message"
-          >
-            <Send size={18} color="#fff" />
+    <div className="ai-page-layout">
+      {/* Left History Sidebar */}
+      <aside
+        className={`ai-history-sidebar ${showHistorySidebar ? "open" : ""}`}
+      >
+        <div className="history-header">
+          <button className="new-chat-btn" onClick={handleNewChat}>
+            <Plus size={18} />
+            <span>New Chat</span>
           </button>
         </div>
-        <div className="ai-input-hint">
-          Press Enter to send · Shift+Enter for new line
+
+        <div className="history-list">
+          {conversations.map((c) => (
+            <div
+              key={c._id}
+              className={`history-item ${currentConversationId === c._id ? "active" : ""}`}
+              onClick={() => handleSelectConversation(c._id)}
+            >
+              <div className="history-title-box">
+                <MessageSquare size={15} />
+                <span>{c.title || "Farm Chat"}</span>
+              </div>
+              <button
+                className="delete-chat-btn"
+                onClick={(e) => handleDeleteChat(c._id, e)}
+                title="Delete conversation"
+              >
+                <Trash2 size={13} />
+              </button>
+            </div>
+          ))}
         </div>
-      </div>
+      </aside>
+
+      {/* Center Main Chat Area */}
+      <main className="ai-main-chat">
+        {/* Header */}
+        <div className="ai-chat-header">
+          <div className="header-left-info">
+            <button
+              className="icon-action-btn mobile-only"
+              onClick={() => setShowHistorySidebar(!showHistorySidebar)}
+            >
+              <SidebarIcon size={18} />
+            </button>
+            <div className="ai-bot-avatar">
+              <Bot size={22} />
+            </div>
+            <div className="header-title-text">
+              <h3>Farmio AI Assistant</h3>
+              <p>
+                <span className="ai-status-dot" />
+                Farmio AI — Demo AI Engine
+              </p>
+            </div>
+          </div>
+
+          <div className="header-actions-group">
+            <button
+              className="icon-action-btn"
+              onClick={() => setShowContextDrawer(!showContextDrawer)}
+              title="Toggle Context Panel"
+            >
+              <Database size={18} />
+            </button>
+          </div>
+        </div>
+
+        {/* Messages Container */}
+        <div className="ai-messages-feed">
+          {messages.length === 0 ? (
+            <div className="ai-welcome-box">
+              <div className="welcome-bot-icon">
+                <Bot size={32} />
+              </div>
+              <h2>Hello, {user?.name || "Farmer"}! 🌱</h2>
+              <p>
+                I am your central AI farming assistant. Ask me anything about
+                your crops, irrigation, soil health, weather forecasts, disease
+                scans, market prices, or government schemes.
+              </p>
+
+              {/* Suggested Prompts Grid */}
+              <div className="suggested-prompts-grid">
+                {QUICK_SUGGESTIONS.map(({ topic, icon: Icon, prompt }) => (
+                  <button
+                    key={topic}
+                    className="prompt-card"
+                    onClick={() => handleSendMessage(prompt)}
+                    disabled={sending}
+                  >
+                    <span>{prompt}</span>
+                    <Icon size={16} />
+                  </button>
+                ))}
+              </div>
+
+              {/* Quick Topic Pills */}
+              <div className="topic-pills-row">
+                {QUICK_SUGGESTIONS.map(({ topic, icon: Icon }) => (
+                  <button
+                    key={topic}
+                    className="topic-pill-btn"
+                    onClick={() =>
+                      handleSendMessage(
+                        `Tell me about my ${topic.toLowerCase()}`,
+                      )
+                    }
+                    disabled={sending}
+                  >
+                    <Icon size={12} />
+                    <span>{topic}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <>
+              {messages.map((msg, index) => {
+                const isUser = msg.role === "user";
+                return (
+                  <div
+                    key={index}
+                    className={`message-row ${isUser ? "user" : "bot"}`}
+                  >
+                    <div
+                      className={`message-avatar ${isUser ? "user" : "bot"}`}
+                    >
+                      {isUser ? initials : <Bot size={16} />}
+                    </div>
+
+                    <div className="message-bubble">
+                      <div
+                        className="formatted-markdown"
+                        dangerouslySetInnerHTML={{
+                          __html: msg.content
+                            .replace(/### (.*)/g, "<h3>$1</h3>")
+                            .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                            .replace(/\*(.*?)\*/g, "<em>$1</em>")
+                            .replace(/\n/g, "<br />"),
+                        }}
+                      />
+
+                      {!isUser && (
+                        <div className="message-meta-bar">
+                          <button
+                            className="copy-btn"
+                            onClick={() => handleCopyText(msg.content, index)}
+                          >
+                            {copiedIndex === index ? (
+                              <>
+                                <Check size={12} />
+                                <span>Copied</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy size={12} />
+                                <span>Copy</span>
+                              </>
+                            )}
+                          </button>
+                          {msg.metadata?.agentsUsed && (
+                            <span>
+                              Agents: {msg.metadata.agentsUsed.join(", ")}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Agent Activity Trace Loader */}
+              {sending && (
+                <div className="message-row bot">
+                  <div className="message-avatar bot">
+                    <Bot size={16} />
+                  </div>
+                  <div className="agent-activity-trace">
+                    <Sparkles size={16} className="spin" />
+                    <span>{traceStep || "Farmio AI is analyzing data..."}</span>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </>
+          )}
+        </div>
+
+        {/* Input Composer */}
+        <div className="ai-composer-container">
+          <div className="composer-input-box">
+            <textarea
+              ref={textareaRef}
+              className="composer-textarea"
+              placeholder="Ask Farmio AI about irrigation, soil, weather, market rates..."
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              onKeyDown={handleKeyDown}
+              rows={1}
+              disabled={sending}
+            />
+            <button
+              className="send-message-btn"
+              onClick={() => handleSendMessage()}
+              disabled={!inputMessage.trim() || sending}
+            >
+              <Send size={16} />
+            </button>
+          </div>
+          <div className="composer-hints">
+            Press Enter to send · Shift+Enter for new line · Farmio AI — Demo AI
+            Engine
+          </div>
+        </div>
+      </main>
+
+      {/* Right Side Context Panel */}
+      {showContextDrawer && (
+        <aside className="ai-context-drawer">
+          <div className="context-header">
+            <h4>Context & Agents Trace</h4>
+            <p>Retrieved farm database state</p>
+          </div>
+
+          <div className="context-card">
+            <div className="context-card-title">
+              <Sprout size={14} />
+              <span>Active Agent</span>
+            </div>
+            <div className="context-card-val">
+              {activeMetadata?.intent?.name
+                ? `${activeMetadata.intent.name} Agent`
+                : "General Agent"}
+            </div>
+          </div>
+
+          <div className="context-card">
+            <div className="context-card-title">
+              <Database size={14} />
+              <span>Data Sources Used</span>
+            </div>
+            <div
+              className="context-card-val"
+              style={{ fontSize: "0.825rem", color: "#64748b" }}
+            >
+              {activeMetadata?.dataSources?.length > 0
+                ? activeMetadata.dataSources.join(", ")
+                : "farm, crop"}
+            </div>
+          </div>
+
+          <div className="context-card">
+            <div className="context-card-title">
+              <Info size={14} />
+              <span>Demo Engine Note</span>
+            </div>
+            <p
+              style={{
+                margin: 0,
+                fontSize: "0.8rem",
+                color: "#64748b",
+                lineHeight: 1.4,
+              }}
+            >
+              Demonstrating full multi-agent orchestration & real database
+              retrieval without external LLM API costs.
+            </p>
+          </div>
+        </aside>
+      )}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import {
   ScanLine,
   BookOpen,
   Wallet,
+  Store,
   Bot,
   Leaf,
   LogOut,
@@ -41,6 +42,7 @@ const navItems = [
       { to: "/disease", icon: ScanLine, label: "Disease Detection" },
       { to: "/schemes", icon: BookOpen, label: "Govt. Schemes" },
       { to: "/finance", icon: Wallet, label: "Farm Finance" },
+      { to: "/market", icon: Store, label: "Marketplace" },
     ],
   },
 ];
