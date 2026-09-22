@@ -15,32 +15,59 @@ const allowedSoilFields = [
 ];
 
 const validateSoilPayload = (payload) => {
-  const { ph, nitrogen, phosphorus, potassium, organicCarbon, micronutrients, notes } = payload;
+  const {
+    ph,
+    nitrogen,
+    phosphorus,
+    potassium,
+    organicCarbon,
+    micronutrients,
+    notes,
+  } = payload;
 
-  if (ph !== undefined && (Number.isNaN(Number(ph)) || Number(ph) < 0 || Number(ph) > 14)) {
+  if (
+    ph !== undefined &&
+    (Number.isNaN(Number(ph)) || Number(ph) < 0 || Number(ph) > 14)
+  ) {
     return "pH must be a number between 0 and 14";
   }
 
-  if (nitrogen !== undefined && (Number.isNaN(Number(nitrogen)) || Number(nitrogen) < 0)) {
+  if (
+    nitrogen !== undefined &&
+    (Number.isNaN(Number(nitrogen)) || Number(nitrogen) < 0)
+  ) {
     return "Nitrogen must be a valid non-negative number";
   }
 
-  if (phosphorus !== undefined && (Number.isNaN(Number(phosphorus)) || Number(phosphorus) < 0)) {
+  if (
+    phosphorus !== undefined &&
+    (Number.isNaN(Number(phosphorus)) || Number(phosphorus) < 0)
+  ) {
     return "Phosphorus must be a valid non-negative number";
   }
 
-  if (potassium !== undefined && (Number.isNaN(Number(potassium)) || Number(potassium) < 0)) {
+  if (
+    potassium !== undefined &&
+    (Number.isNaN(Number(potassium)) || Number(potassium) < 0)
+  ) {
     return "Potassium must be a valid non-negative number";
   }
 
-  if (organicCarbon !== undefined && (Number.isNaN(Number(organicCarbon)) || Number(organicCarbon) < 0)) {
+  if (
+    organicCarbon !== undefined &&
+    (Number.isNaN(Number(organicCarbon)) || Number(organicCarbon) < 0)
+  ) {
     return "Organic carbon must be a valid non-negative number";
   }
 
   if (micronutrients) {
     const micronutrientList = ["zinc", "iron", "manganese", "copper", "boron"];
     for (const key of micronutrientList) {
-      if (micronutrients[key] !== undefined && (Number.isNaN(Number(micronutrients[key])) || Number(micronutrients[key]) < 0)) {
+      if (
+        micronutrients[key] !== undefined &&
+        (Number.isNaN(Number(micronutrients[key])) ||
+          Number(micronutrients[key]) < 0)
+      ) {
         return `${key} must be a valid non-negative number`;
       }
     }
@@ -55,7 +82,16 @@ const validateSoilPayload = (payload) => {
 
 export const createSoilRecord = async (req, res) => {
   try {
-    const { farm, ph, nitrogen, phosphorus, potassium, organicCarbon, micronutrients, notes } = req.body;
+    const {
+      farm,
+      ph,
+      nitrogen,
+      phosphorus,
+      potassium,
+      organicCarbon,
+      micronutrients,
+      notes,
+    } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(farm)) {
       return res.status(400).json({
@@ -64,7 +100,15 @@ export const createSoilRecord = async (req, res) => {
       });
     }
 
-    const validationMessage = validateSoilPayload({ ph, nitrogen, phosphorus, potassium, organicCarbon, micronutrients, notes });
+    const validationMessage = validateSoilPayload({
+      ph,
+      nitrogen,
+      phosphorus,
+      potassium,
+      organicCarbon,
+      micronutrients,
+      notes,
+    });
 
     if (validationMessage) {
       return res.status(400).json({
@@ -225,7 +269,9 @@ export const getSoilHistory = async (req, res) => {
       });
     }
 
-    const limit = Number.isFinite(requestedLimit) ? Math.min(Math.max(requestedLimit, 1), 100) : 20;
+    const limit = Number.isFinite(requestedLimit)
+      ? Math.min(Math.max(requestedLimit, 1), 100)
+      : 20;
 
     const records = await SoilRecord.find({
       farm: farmId,
@@ -269,7 +315,9 @@ export const updateSoilRecord = async (req, res) => {
       }
     }
 
-    const invalidKeys = Object.keys(updateData).filter((field) => !allowedSoilFields.includes(field));
+    const invalidKeys = Object.keys(updateData).filter(
+      (field) => !allowedSoilFields.includes(field),
+    );
 
     if (invalidKeys.length > 0) {
       return res.status(400).json({
@@ -287,7 +335,10 @@ export const updateSoilRecord = async (req, res) => {
       });
     }
 
-    if (updateData.notes !== undefined && typeof updateData.notes === "string") {
+    if (
+      updateData.notes !== undefined &&
+      typeof updateData.notes === "string"
+    ) {
       updateData.notes = updateData.notes.trim();
     }
 
@@ -300,7 +351,7 @@ export const updateSoilRecord = async (req, res) => {
       {
         new: true,
         runValidators: true,
-      }
+      },
     );
 
     if (!record) {
